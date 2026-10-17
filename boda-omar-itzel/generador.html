@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Generador de pases · Omar & Itzel</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#183029;--hondo:#0f201b;--oro:#c8a45a;--marfil:#f1ead9;--linea:rgba(200,164,90,.34)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--hondo);color:var(--marfil);font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;padding:32px 16px}
+main{max-width:640px;margin:0 auto}
+h1{font-weight:400;font-size:2rem;margin-bottom:.3rem}
+p.sub{font-family:Jost,sans-serif;font-size:.8rem;letter-spacing:.08em;color:rgba(241,234,217,.6);margin-bottom:1.6rem}
+label{display:block;font-family:Jost,sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--oro);margin:1rem 0 .4rem}
+input,textarea{width:100%;background:transparent;border:1px solid var(--linea);color:var(--marfil);padding:10px 12px;font:inherit;font-size:1rem}
+textarea{min-height:180px;font-family:Jost,sans-serif;font-size:.9rem}
+button{margin-top:1rem;background:var(--oro);color:var(--hondo);border:0;padding:12px 20px;font-family:Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:.7rem;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:1.6rem;font-family:Jost,sans-serif;font-size:.8rem}
+td,th{border-bottom:1px solid var(--linea);padding:10px 6px;text-align:left;vertical-align:top}
+th{color:var(--oro);font-weight:400;letter-spacing:.15em;text-transform:uppercase;font-size:.62rem}
+td a{color:var(--marfil);word-break:break-all}
+td button{margin:0;padding:6px 10px;font-size:.6rem}
+</style>
+</head>
+<body>
+<main>
+  <h1>Generador de pases</h1>
+  <p class="sub">Escribe un invitado por línea: <b>Nombre, pases</b>. Ejemplo: Familia Pérez, 3</p>
+  <label for="base">URL de la invitación</label>
+  <input id="base">
+  <label for="lista">Invitados</label>
+  <textarea id="lista" placeholder="Familia Pérez, 3&#10;Tía Lupita, 1&#10;Carlos y Ana, 2"></textarea>
+  <button id="generar">Generar links</button>
+  <button id="csv" type="button">Descargar CSV</button>
+  <table id="tabla" hidden><thead><tr><th>Invitado</th><th>Pases</th><th>Link</th><th></th></tr></thead><tbody></tbody></table>
+</main>
+<script>
+const base = document.getElementById('base');
+base.value = location.href.replace(/generador\.html.*$/, '');
+let filas = [];
+document.getElementById('generar').addEventListener('click', () => {
+  filas = document.getElementById('lista').value.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
+    const m = l.match(/^(.*?)[,;\t]\s*(\d+)\s*$/);
+    const nombre = (m ? m[1] : l).trim(), pases = m ? +m[2] : 0;
+    const q = new URLSearchParams({ n: nombre }); if (pases) q.set('p', pases);
+    return { nombre, pases, url: base.value.trim() + '?' + q.toString() };
+  });
+  const tb = document.querySelector('#tabla tbody'); tb.innerHTML = '';
+  filas.forEach(f => {
+    const tr = tb.insertRow();
+    tr.insertCell().textContent = f.nombre; tr.insertCell().textContent = f.pases || '—';
+    const a = Object.assign(document.createElement('a'), { href: f.url, target: '_blank', textContent: f.url }); tr.insertCell().appendChild(a);
+    const b = Object.assign(document.createElement('button'), { textContent: 'Copiar' });
+    b.onclick = () => navigator.clipboard.writeText(f.url).then(() => { b.textContent = '¡Listo!'; setTimeout(() => b.textContent = 'Copiar', 1200); });
+    tr.insertCell().appendChild(b);
+  });
+  document.getElementById('tabla').hidden = !filas.length;
+});
+document.getElementById('csv').addEventListener('click', () => {
+  if (!filas.length) return;
+  const csv = 'Invitado,Pases,Link\n' + filas.map(f => `"${f.nombre.replace(/"/g, '""')}",${f.pases},${f.url}`).join('\n');
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })), download: 'pases-omar-itzel.csv' });
+  a.click();
+});
+</script>
+</body>
+</html>
