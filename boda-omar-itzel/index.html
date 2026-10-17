@@ -707,7 +707,7 @@ const CONFIG = {
   rsvpEmail: 'itzelblancass21@gmail.com',
   pasesDefault: 4,
   musica: {
-    completa: 'assets/musica/como-tu.mp3',   // versión completa: si el archivo existe se usa en lugar del preview
+    completa: 'assets/musica/como-tu.m4a',   // versión completa (comprada en iTunes); si falta, se usa el preview de 30 s
     preview: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/dd/7f/84/dd7f8471-a325-d6c6-5a05-130a287d4ede/mzaf_14939598660718648887.plus.aac.p.m4a',
     portada: 'https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/37/c8/5d/37c85d99-2b8a-90d7-1a63-4074373bafcd/0.jpg/400x400bb.jpg',
     appleMusic: 'https://music.apple.com/mx/album/como-t%C3%BA/1620890600?i=1620890601'
@@ -777,8 +777,12 @@ if (invitado) $('#fNombre').value = invitado;
 const audio = $('#audio');
 $('#portada').style.backgroundImage = `url("${CONFIG.musica.portada}")`;
 $('#linkApple').href = CONFIG.musica.appleMusic;
-audio.src = CONFIG.musica.preview;
-fetch(CONFIG.musica.completa, { method: 'HEAD' }).then(r => { if (r.ok && audio.paused) audio.src = CONFIG.musica.completa; }).catch(() => {});
+audio.src = CONFIG.musica.completa;
+// respaldo: si la versión completa no carga, usa el preview oficial de 30 s
+audio.addEventListener('error', () => {
+  if (audio.src.includes(CONFIG.musica.preview)) return;
+  audio.src = CONFIG.musica.preview; if (quiereSonar) audio.play().then(() => setMusicaUI(true)).catch(() => {});
+});
 let quiereSonar = false;
 function setMusicaUI(on) {
   $('#vinilo').classList.toggle('sonando', on); $('#brazo').classList.toggle('on', on);

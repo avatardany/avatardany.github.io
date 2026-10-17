@@ -24,15 +24,15 @@ Adornos: ramas de laurel doradas. Moodboard en `inspiracion/`.
 - Padrinos: Gisela González Torres, Roman Rojas Barrera
 - Dress code: colores neutros
 - RSVP: itzelblancass21@gmail.com (formulario abre correo prellenado)
-- Canción: "Como tú" — Camilo Séptimo (Apple Music id 1620890601). Suena el preview oficial de 30 s en bucle;
-  si se coloca `assets/musica/como-tu.mp3` (versión completa con licencia de la pareja) se usa automáticamente.
+- Canción: "Como tú" — Camilo Séptimo (Apple Music id 1620890601). Versión completa comprada en iTunes (2026-10-17) → `assets/musica/como-tu.m4a`
+  (AAC 128 kbps, 3 MB, sin metadatos de cuenta). Si faltara, usa el preview oficial de 30 s.
 - Itinerario: 2:00 religiosa · 3:30 recepción · 4:00 civil · 5:00 banquete · 8:30 primer baile · 9:00 brindis · baile
 
 ## Pendientes (se rellenan en `CONFIG` dentro de index.html)
 - [ ] Dirección + link de Google Maps de ceremonia religiosa
 - [ ] Dirección + link de Google Maps de ceremonia civil (¿mismo lugar que la recepción?)
 - [ ] Link de mesa de regalos
-- [ ] (Opcional) canción completa → `assets/musica/como-tu.mp3`
+- [x] Canción completa → `assets/musica/como-tu.m4a`
 - [ ] ¿Fecha límite para confirmar?
 - [ ] ¿Fotos de la pareja? (opcional: galería)
 - [ ] Hosting (Netlify / Vercel / GitHub Pages) y dominio

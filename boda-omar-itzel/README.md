@@ -10,7 +10,7 @@ Todo lo editable está al inicio del `<script>` de `index.html`, en el objeto `C
 | `regalosUrl` | Link de la mesa de regalos. Vacío = botón "Próximamente" |
 | `rsvpEmail` | Correo que recibe las confirmaciones |
 | `pasesDefault` | Máximo de personas en el RSVP cuando el link no trae pases |
-| `musica.completa` | Ruta del MP3 completo (`assets/musica/como-tu.mp3`). Si existe, reemplaza al preview de 30 s |
+| `musica.completa` | Ruta de la canción completa (`assets/musica/como-tu.m4a`). Si existe, reemplaza al preview de 30 s |
 
 Textos (padres, itinerario, colores de vestimenta) están en el HTML y en los arreglos `MOMENTOS` y `COLORES`.
 Colores y tipografías: variables CSS en `:root` (`--verde`, `--oro`, etc.).
