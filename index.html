@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jay IA Studio</title>
+<meta name="description" content="Jay IA Studio · Invitaciones digitales interactivas y experiencias web creadas con IA.">
+<meta name="theme-color" content="#0e0f12">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0f12'/%3E%3Ctext x='32' y='42' font-size='26' text-anchor='middle' fill='%23d9bb72' font-family='serif' font-style='italic'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#0e0f12;--panel:#15171c;--texto:#efe9dc;--suave:rgba(239,233,220,.62);--tenue:rgba(239,233,220,.38);
+  --oro:#d9bb72;--linea:rgba(217,187,114,.22);
+  --foil:linear-gradient(100deg,#9d7c3c,#e3c77f 30%,#f6e6b4 45%,#c8a45a 60%,#9d7c3c);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100svh;background:var(--fondo);color:var(--texto);font-family:'Jost',system-ui,sans-serif;font-weight:300;
+  display:flex;flex-direction:column;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(60% 45% at 80% 0%,rgba(217,187,114,.10),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(36,68,58,.35),transparent 70%)}
+.wrap{position:relative;width:min(100% - 32px,1040px);margin:0 auto}
+header{padding:28px 0;display:flex;align-items:center;justify-content:space-between}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.logo{width:38px;height:38px;border-radius:10px;border:1px solid var(--linea);display:grid;place-items:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--oro)}
+.marca span{font-size:.72rem;letter-spacing:.38em;text-transform:uppercase}
+header small{font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tenue)}
+.hero{padding:clamp(56px,12vh,120px) 0 56px}
+.eyebrow{font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;color:var(--oro)}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.8rem,9vw,5.6rem);line-height:1.02;margin:18px 0 22px;letter-spacing:-.01em}
+h1 em{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic;padding-right:.05em}
+.hero p{max-width:46ch;color:var(--suave);font-size:1.05rem;line-height:1.7}
+.seccion{padding:24px 0 80px}
+.seccion h2{font-size:.68rem;letter-spacing:.38em;text-transform:uppercase;color:var(--tenue);font-weight:400;margin-bottom:18px;
+  display:flex;align-items:center;gap:14px}
+.seccion h2::after{content:"";flex:1;height:1px;background:var(--linea)}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+.proyecto{position:relative;display:block;text-decoration:none;color:inherit;border:1px solid var(--linea);border-radius:18px;overflow:hidden;
+  background:var(--panel);transition:transform .5s var(--ease),border-color .4s,box-shadow .5s var(--ease)}
+.proyecto:hover{transform:translateY(-4px);border-color:rgba(217,187,114,.5);box-shadow:0 24px 50px -24px rgba(0,0,0,.8)}
+.proyecto:focus-visible{outline:1px solid var(--oro);outline-offset:4px}
+.portada{aspect-ratio:4/3;position:relative;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(120% 90% at 50% 20%,#24443a 0%,#183029 45%,#0f201b 100%)}
+.portada::before{content:"";position:absolute;inset:14px;border:1px solid rgba(200,164,90,.35);border-radius:8px}
+.portada .sello{width:64px;height:64px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  background:radial-gradient(circle at 34% 28%,#fff1c4 0%,#e3c77f 28%,#c8a45a 55%,#8f6f33 100%);
+  box-shadow:0 8px 16px rgba(0,0,0,.45),inset 0 -3px 6px rgba(90,64,20,.5);
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:#5d4519}
+.portada .nombres{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:2.1rem;
+  background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.portada .fecha{font-size:.62rem;letter-spacing:.45em;color:rgba(241,234,217,.7);margin-top:6px}
+.info{padding:18px 20px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.info b{display:block;font-weight:400;font-size:1rem}
+.info small{color:var(--tenue);font-size:.78rem}
+.flecha{width:40px;height:40px;flex:none;border-radius:50%;border:1px solid var(--linea);display:grid;place-items:center;color:var(--oro);
+  transition:background .4s,color .4s,transform .5s var(--ease)}
+.proyecto:hover .flecha{background:var(--oro);color:var(--fondo);transform:rotate(-45deg)}
+.flecha svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pronto{border:1px dashed var(--linea);border-radius:18px;display:grid;place-items:center;text-align:center;padding:40px 24px;color:var(--tenue);min-height:200px}
+.pronto p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--suave);margin-bottom:6px}
+.pronto small{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase}
+footer{margin-top:auto;padding:28px 0 36px;border-top:1px solid var(--linea);font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tenue)}
+.rv{opacity:0;transform:translateY(18px);animation:entra 1s var(--ease) forwards}
+.rv.d1{animation-delay:.1s}.rv.d2{animation-delay:.2s}.rv.d3{animation-delay:.32s}
+@keyframes entra{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rv{animation:none;opacity:1;transform:none}.proyecto,.flecha{transition:none}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="rv">
+      <a class="marca" href="./"><span class="logo">J</span><span>Jay IA Studio</span></a>
+      <small>Diseño · IA · Web</small>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow rv d1">Invitaciones digitales interactivas</p>
+      <h1 class="rv d2">Momentos únicos,<br><em>diseñados con IA</em></h1>
+      <p class="rv d3">Creamos invitaciones y experiencias web a la medida: con música, animaciones y confirmación de asistencia, listas para compartir por WhatsApp.</p>
+    </section>
+
+    <section class="seccion">
+      <h2 class="rv d2">Proyectos</h2>
+      <div class="grid">
+        <a class="proyecto rv d3" href="boda-omar-itzel/" aria-label="Ver invitación de boda de Omar e Itzel">
+          <div class="portada">
+            <div>
+              <div class="sello">O&amp;I</div>
+              <div class="nombres">Omar &amp; Itzel</div>
+              <div class="fecha">20 · 02 · 2027</div>
+            </div>
+          </div>
+          <div class="info">
+            <div><b>Boda · Omar &amp; Itzel</b><small>Invitación interactiva · verde y oro</small></div>
+            <span class="flecha" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+        <div class="pronto rv d3">
+          <div><p>Tu evento aquí</p><small>Próximamente</small></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer><div class="wrap">© 2026 Jay IA Studio</div></footer>
+</body>
+</html>
