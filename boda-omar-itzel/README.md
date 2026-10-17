@@ -15,9 +15,15 @@ Todo lo editable está al inicio del `<script>` de `index.html`, en el objeto `C
 Textos (padres, itinerario, colores de vestimenta) están en el HTML y en los arreglos `MOMENTOS` y `COLORES`.
 Colores y tipografías: variables CSS en `:root` (`--verde`, `--oro`, etc.).
 
+## Dos versiones (misma base)
+- **A · Deslizar**: `./` (scroll vertical)
+- **B · Pestañas**: `./?modo=pestanas` (una sección a la vez, botón "Sigue" o deslizar de lado)
+- `comparar.html`: muestra ambas en marcos de teléfono para que la pareja elija.
+Cualquier cambio de contenido en `index.html` aplica a las dos.
+
 ## Links personalizados por invitado
 `?n=Nombre&p=Pases` → muestra el nombre y los lugares reservados en el sobre y limita el RSVP.
-Usa `generador.html` para crear todos los links de golpe (pegas la lista, copias o descargas CSV).
+Usa `generador.html` (elige versión A o B) para crear todos los links de golpe (pegas la lista, copias o descargas CSV).
 
 ## Ver en local
 ```bash

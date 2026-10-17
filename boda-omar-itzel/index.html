@@ -311,6 +311,35 @@ footer .gracias{font-style:italic;font-size:1.25rem;color:var(--marfil-suave);ma
 .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
 
+/* ================= Versión pestañas (?modo=pestanas) ================= */
+.deck-ui{display:none}
+html.modo-pestanas,html.modo-pestanas body{height:100%;overflow:hidden}
+html.modo-pestanas body{padding-bottom:0}
+.modo-pestanas main{position:fixed;inset:0;display:flex;transition:transform .8s var(--ease);will-change:transform;touch-action:pan-y}
+.modo-pestanas main > .slide{flex:0 0 100%;width:100%;height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;display:flex;flex-direction:column;padding:64px 16px calc(var(--dock) + 96px + env(safe-area-inset-bottom));
+  opacity:.25;transition:opacity .7s var(--ease)}
+.modo-pestanas main > .slide.activa{opacity:1}
+.modo-pestanas main > .slide > .cont,.modo-pestanas main > .slide > .hero-inner{margin-block:auto;width:100%}
+.modo-pestanas .scroll-hint{display:none}
+.modo-pestanas footer.slide{background:var(--verde-hondo)}
+html.modo-pestanas body.deck-on .deck-ui{display:block}
+.progreso{position:fixed;top:calc(12px + env(safe-area-inset-top));left:16px;right:16px;z-index:46;display:flex;gap:4px;pointer-events:none}
+.progreso i{flex:1;height:2px;border-radius:2px;background:rgba(241,234,217,.18);overflow:hidden;position:relative}
+.progreso i::after{content:"";position:absolute;inset:0;background:var(--oro);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.progreso i.lleno::after{transform:scaleX(1)}
+.deck-nav{position:fixed;left:50%;bottom:calc(var(--dock) + 22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:46;display:flex;gap:10px;align-items:center}
+.paso{width:48px;height:48px;border-radius:50%;border:1px solid var(--linea);background:rgba(12,26,22,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:var(--oro);display:grid;place-items:center;cursor:pointer;transition:opacity .4s,transform .3s var(--ease)}
+.paso:disabled{opacity:0;pointer-events:none;transform:scale(.8)}
+.siguiente{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px 0 24px;border-radius:999px;border:0;cursor:pointer;
+  background:var(--foil);background-size:200% 100%;color:var(--verde-hondo);font-family:var(--sans);font-weight:500;font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;white-space:nowrap;box-shadow:0 14px 30px -12px rgba(0,0,0,.8);transition:transform .2s,background-position .6s}
+.siguiente:active,.paso:active{transform:scale(.95)}
+.siguiente small{font-weight:400;opacity:.7;letter-spacing:.2em}
+.siguiente.invita svg{animation:empuja 1.6s ease-in-out infinite}
+@keyframes empuja{0%,100%{transform:none}50%{transform:translateX(4px)}}
+
 @media (min-width:720px){
   body{font-size:20px}
   .familias{grid-template-columns:1fr 1fr}
@@ -657,6 +686,14 @@ footer .gracias{font-style:italic;font-size:1.25rem;color:var(--marfil-suave);ma
   </button>
 </nav>
 
+<div class="deck-ui">
+  <div class="progreso" id="progreso" aria-hidden="true"></div>
+  <div class="deck-nav">
+    <button class="paso" id="prevSlide" type="button" aria-label="Sección anterior"><svg class="ic"><use href="#i-izq"/></svg></button>
+    <button class="siguiente" id="nextSlide" type="button"><small>Sigue</small><span id="nextSlideTxt"></span><svg class="ic" style="width:16px;height:16px"><use href="#i-der"/></svg></button>
+  </div>
+</div>
+
 <script>
 /* ===== Configuración: rellenar cuando la pareja comparta los datos ===== */
 const CONFIG = {
@@ -677,6 +714,8 @@ const CONFIG = {
   }
 };
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const MODO_PESTANAS = new URLSearchParams(location.search).get('modo') === 'pestanas';
+if (MODO_PESTANAS) document.documentElement.classList.add('modo-pestanas');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ===== Efectos dorados (confeti + destellos) ===== */
@@ -764,7 +803,7 @@ env.addEventListener('click', () => {
   const r = env.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .62, 70, 9);
   setTimeout(() => {
     $('#sobre').classList.add('fuera'); document.body.classList.remove('cerrado');
-    window.scrollTo(0, 0); $('#dock').classList.add('visible'); observar(); iniciarRaspas(); ir(0, false);
+    window.scrollTo(0, 0); $('#dock').classList.add('visible'); (MODO_PESTANAS ? iniciarDeck : observar)(); iniciarRaspas(); ir(0, false);
   }, 1700);
 });
 $('#sobre').addEventListener('pointermove', e => {
@@ -939,6 +978,55 @@ form.addEventListener('submit', e => {
   setTimeout(() => location.href = 'mailto:' + CONFIG.rsvpEmail + '?subject=' + encodeURIComponent(`RSVP Boda Omar & Itzel — ${nombre}`) + '&body=' + encodeURIComponent(cuerpo), si ? 700 : 0);
   $('#avisoRsvp').textContent = '¡Gracias! Solo presiona “Enviar” en tu correo para completar la confirmación.';
 });
+
+/* ===== Versión pestañas: una sección a la vez ===== */
+function iniciarDeck() {
+  const main = $('main'), foot = $('footer');
+  const envol = document.createElement('div'); envol.className = 'cont';
+  [...foot.children].filter(c => !c.classList.contains('flor-esq')).forEach(c => envol.appendChild(c));
+  foot.appendChild(envol); main.appendChild(foot);
+  const slides = [...main.children];
+  const NOMBRES = ['Inicio', 'Nuestra fecha', 'Nuestros padres', 'Nuestra canción', 'Dónde y cuándo', 'Itinerario', 'Vestimenta', 'Regalos', 'Confirmar', 'Gracias'];
+  slides.forEach(sl => { sl.classList.add('slide'); $('#progreso').appendChild(document.createElement('i')); });
+  document.body.classList.add('deck-on');
+  const links = $$('.dock a');
+  let k = -1;
+  function irSlide(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n)); if (n === k) return;
+    const antes = slides[k]; k = n; const sl = slides[n];
+    main.style.transform = `translateX(${-n * 100}%)`;
+    slides.forEach((x, j) => { x.classList.toggle('activa', j === n); x.inert = j !== n; });
+    sl.scrollTop = 0;
+    const rvs = sl.querySelectorAll('.rv'); rvs.forEach(el => el.classList.remove('in'));
+    requestAnimationFrame(() => requestAnimationFrame(() => rvs.forEach(el => el.classList.add('in'))));
+    if (antes) setTimeout(() => { if (antes !== slides[k]) antes.querySelectorAll('.rv').forEach(el => el.classList.remove('in')); }, 800);
+    $$('#progreso i').forEach((b, j) => b.classList.toggle('lleno', j <= n));
+    $('#prevSlide').disabled = n === 0;
+    $('#nextSlideTxt').textContent = n < slides.length - 1 ? NOMBRES[n + 1] : 'Volver al inicio';
+    $('#nextSlide').classList.toggle('invita', n === 0);
+    $('#inicio').classList.toggle('pausa', n !== 0);
+    let activo = null; links.forEach(l => { if (slides.indexOf(document.getElementById(l.dataset.sec)) <= n) activo = l; });
+    links.forEach(l => l.classList.toggle('activo', l === activo));
+    if (n === slides.length - 1) setTimeout(lluvia, 500);
+  }
+  $('#nextSlide').addEventListener('click', () => irSlide(k < slides.length - 1 ? k + 1 : 0));
+  $('#prevSlide').addEventListener('click', () => irSlide(k - 1));
+  links.forEach(l => l.addEventListener('click', e => { e.preventDefault(); irSlide(slides.indexOf(document.getElementById(l.dataset.sec))); }));
+  addEventListener('keydown', e => {
+    if (e.target.closest('input,textarea,select')) return;
+    if (e.key === 'ArrowRight') irSlide(k + 1); if (e.key === 'ArrowLeft') irSlide(k - 1);
+  });
+  // deslizar de lado para cambiar de sección
+  let p0 = null;
+  main.addEventListener('pointerdown', e => { p0 = e.target.closest('.raspa,.momento,input,textarea,select') ? null : [e.clientX, e.clientY]; });
+  main.addEventListener('pointerup', e => {
+    if (!p0) return; const dx = e.clientX - p0[0], dy = e.clientY - p0[1]; p0 = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) irSlide(k + (dx < 0 ? 1 : -1));
+  });
+  main.addEventListener('pointercancel', () => p0 = null);
+  addEventListener('scroll', () => { if (scrollX || scrollY) scrollTo(0, 0); });
+  irSlide(0);
+}
 
 /* ===== Revelado al hacer scroll + dock activo ===== */
 function observar() {

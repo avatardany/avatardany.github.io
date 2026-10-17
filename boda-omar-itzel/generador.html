@@ -14,7 +14,8 @@ main{max-width:640px;margin:0 auto}
 h1{font-weight:400;font-size:2rem;margin-bottom:.3rem}
 p.sub{font-family:Jost,sans-serif;font-size:.8rem;letter-spacing:.08em;color:rgba(241,234,217,.6);margin-bottom:1.6rem}
 label{display:block;font-family:Jost,sans-serif;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--oro);margin:1rem 0 .4rem}
-input,textarea{width:100%;background:transparent;border:1px solid var(--linea);color:var(--marfil);padding:10px 12px;font:inherit;font-size:1rem}
+input,textarea,select{width:100%;background:transparent;border:1px solid var(--linea);color:var(--marfil);padding:10px 12px;font:inherit;font-size:1rem}
+select option{background:var(--hondo)}
 textarea{min-height:180px;font-family:Jost,sans-serif;font-size:.9rem}
 button{margin-top:1rem;background:var(--oro);color:var(--hondo);border:0;padding:12px 20px;font-family:Jost,sans-serif;letter-spacing:.2em;text-transform:uppercase;font-size:.7rem;cursor:pointer}
 table{width:100%;border-collapse:collapse;margin-top:1.6rem;font-family:Jost,sans-serif;font-size:.8rem}
@@ -30,6 +31,8 @@ td button{margin:0;padding:6px 10px;font-size:.6rem}
   <p class="sub">Escribe un invitado por línea: <b>Nombre, pases</b>. Ejemplo: Familia Pérez, 3</p>
   <label for="base">URL de la invitación</label>
   <input id="base">
+  <label for="version">Versión</label>
+  <select id="version"><option value="">A · Deslizar</option><option value="pestanas">B · Pestañas</option></select>
   <label for="lista">Invitados</label>
   <textarea id="lista" placeholder="Familia Pérez, 3&#10;Tía Lupita, 1&#10;Carlos y Ana, 2"></textarea>
   <button id="generar">Generar links</button>
@@ -44,7 +47,8 @@ document.getElementById('generar').addEventListener('click', () => {
   filas = document.getElementById('lista').value.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
     const m = l.match(/^(.*?)[,;\t]\s*(\d+)\s*$/);
     const nombre = (m ? m[1] : l).trim(), pases = m ? +m[2] : 0;
-    const q = new URLSearchParams({ n: nombre }); if (pases) q.set('p', pases);
+    const q = new URLSearchParams(); const v = document.getElementById('version').value;
+    if (v) q.set('modo', v); q.set('n', nombre); if (pases) q.set('p', pases);
     return { nombre, pases, url: base.value.trim() + '?' + q.toString() };
   });
   const tb = document.querySelector('#tabla tbody'); tb.innerHTML = '';
