@@ -50,7 +50,7 @@ svg.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.3;str
 .foil{background:var(--foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 /* el brillo animado solo en los nombres principales (repintar texto es caro) */
 .sobre-nombres.foil,.hero .nombres.foil{animation:brillo 7s ease-in-out infinite alternate}
-.hero.pausa .satin,.hero.pausa .foil,.hero.pausa .flor-esq svg{animation-play-state:paused}
+.hero.pausa .satin,.hero.pausa .foil,.hero.pausa .flor-esq img{animation-play-state:paused}
 @keyframes brillo{from{background-position:0% 50%}to{background-position:100% 50%}}
 .eyebrow{font-family:var(--sans);font-size:.68rem;letter-spacing:.42em;text-transform:uppercase;color:var(--oro);font-weight:400}
 h2.titulo{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,7vw,2.8rem);letter-spacing:.02em;line-height:1.15;margin:.5rem 0 1.2rem}
@@ -62,17 +62,17 @@ h2.titulo em{font-family:var(--script);font-style:normal;font-size:1.3em;padding
 @keyframes latido{0%,100%{transform:scale(.6);opacity:.4}50%{transform:scale(1.2);opacity:1}}
 
 /* flores */
-.flor-esq{position:absolute;width:min(46vw,250px);aspect-ratio:1;pointer-events:none;z-index:0}
+.flor-esq{position:absolute;width:min(54vw,300px);pointer-events:none;z-index:0}
 .flor-esq{will-change:transform}
-.flor-esq svg{width:100%;height:100%;display:block;transform-origin:8% 8%;animation:mece 9s ease-in-out infinite alternate;overflow:visible;will-change:transform}
+.flor-esq img{width:100%;height:auto;display:block;transform-origin:4% 4%;animation:mece 10s ease-in-out infinite alternate;will-change:transform;pointer-events:none;user-select:none}
 .flor-esq.tl{top:0;left:0}
 .flor-esq.br{bottom:0;right:0;transform:rotate(180deg)}
 .flor-esq.tr{top:0;right:0;transform:scaleX(-1)}
 .flor-esq.bl{bottom:0;left:0;transform:scaleY(-1)}
-.flor-esq.suave{opacity:.75;width:min(36vw,190px)}
-#sobre .flor-esq{width:min(30vw,150px)}
+.flor-esq.suave{opacity:.9;width:min(40vw,220px)}
+#sobre .flor-esq{width:min(40vw,210px)}
 #sobre .sobre-wrap{padding-top:clamp(40px,9vh,90px)}
-@keyframes mece{from{transform:rotate(-1.6deg)}to{transform:rotate(1.6deg)}}
+@keyframes mece{from{transform:rotate(-1.2deg)}to{transform:rotate(1.2deg)}}
 .con-flores{overflow:hidden}
 .flores-fondo{position:fixed;inset:0;overflow:hidden;pointer-events:none}
 .rama{overflow:visible}
@@ -95,7 +95,7 @@ h2.titulo em{font-family:var(--script);font-style:normal;font-size:1.3em;padding
 .env-carta{position:absolute;left:6%;right:6%;top:8%;bottom:6%;border-radius:3px;background:var(--marfil);color:var(--verde);
   display:grid;place-items:center;transition:transform 1s var(--ease) .45s;z-index:1;box-shadow:inset 0 0 0 6px var(--marfil),inset 0 0 0 7px var(--oro)}
 .env-carta p{font-family:var(--script);font-size:clamp(1.6rem,7vw,2.1rem);display:flex;flex-direction:column;align-items:center;gap:2px}
-.env-carta p svg{width:44px;height:30px}
+.env-carta p .rosita{width:46px;height:auto;filter:drop-shadow(0 2px 3px rgba(15,32,27,.25))}
 .env-p{position:absolute;inset:0;z-index:2;border-radius:6px}
 .env-izq{background:linear-gradient(100deg,#1d3c33,#16302a);clip-path:polygon(0 0,52% 54%,0 100%)}
 .env-der{background:linear-gradient(260deg,#1d3c33,#16302a);clip-path:polygon(100% 0,48% 54%,100% 100%)}
@@ -233,7 +233,28 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 
 /* fotos de fondo por sección */
 .con-foto{background-size:cover!important;background-position:center!important}
-.hero.con-foto .satin{opacity:.35}
+.hero.con-foto .satin{opacity:.12}
+.hero.con-foto{place-items:end center;padding-bottom:calc(var(--dock) + 64px);background-position:center 20%!important}
+.hero.con-foto .hero-inner{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.hero.con-foto .nombres{margin:.2rem 0 .6rem;font-size:clamp(3rem,13.5vw,4.8rem);white-space:nowrap}
+.hero.con-foto .y{display:inline-block;font-size:.42em;margin:0 .45em 0 .3em;vertical-align:.3em}
+.hero.con-foto .eyebrow{font-size:.58rem;letter-spacing:.24em}
+.hero.con-foto .rama{margin-bottom:.8rem}
+.hero.con-foto .lead{font-size:1.05rem}
+
+/* nuestra historia: mazo de fotos */
+.flecha{width:44px;height:44px;border-radius:50%;border:1px solid var(--linea);background:none;cursor:pointer;color:var(--oro);display:grid;place-items:center;transition:border-color .3s,background .3s}
+.flecha:hover{border-color:var(--oro);background:rgba(200,164,90,.08)}
+.mazo{position:relative;width:min(78vw,330px);aspect-ratio:3/4;margin:2.4rem auto 0;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.polaroid{position:absolute;inset:0;background:#f6f2e8;padding:10px 10px 52px;border-radius:4px;cursor:grab;
+  box-shadow:0 22px 40px -18px rgba(0,0,0,.75),0 0 0 1px rgba(200,164,90,.25);transition:transform .6s var(--ease),opacity .45s;will-change:transform}
+.polaroid img{width:100%;height:100%;object-fit:cover;display:block;border-radius:2px;pointer-events:none}
+.polaroid figcaption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:var(--script);font-size:1.6rem;line-height:1.2;color:#2a3b33;padding:0 8px}
+.polaroid.vuela{transition:transform .55s cubic-bezier(.5,0,.75,0),opacity .55s}
+.mazo-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:22px}
+.puntos-mazo{display:flex;gap:7px}
+.puntos-mazo i{width:7px;height:7px;border-radius:50%;background:rgba(241,234,217,.25);transition:background .4s,transform .4s}
+.puntos-mazo i.on{background:var(--oro);transform:scale(1.3)}
 
 /* ubicaciones con foto */
 #ceremonias{padding-bottom:0}
@@ -446,7 +467,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
       <path d="M6 13h80M114 13h80" stroke="currentColor" stroke-width=".8" fill="none" opacity=".7"/>
       <path d="M80 13c-3-6-9-8-13-7 2 4 7 7 13 7zM80 13c-3 6-9 8-13 7 2-4 7-7 13-7zM66 13c-3-5-8-7-11-6 2 4 6 6 11 6zM66 13c-3 5-8 7-11 6 2-4 6-6 11-6zM53 13c-2-4-6-5-9-4 2 3 5 4 9 4zM53 13c-2 4-6 5-9 4 2-3 5-4 9-4z"/>
       <path d="M120 13c3-6 9-8 13-7-2 4-7 7-13 7zM120 13c3 6 9 8 13 7-2-4-7-7-13-7zM134 13c3-5 8-7 11-6-2 4-6 6-11 6zM134 13c3 5 8 7 11 6-2-4-6-6-11-6zM147 13c2-4 6-5 9-4-2 3-5 4-9 4zM147 13c2 4 6 5 9 4-2-3-5-4-9-4z"/>
-      <use href="#flor" transform="translate(100 13) scale(.5)"/>
+      <image href="assets/ilustraciones/rosa-suelta.webp" x="86" y="-2" width="28" height="30" preserveAspectRatio="xMidYMid meet"/>
     </g>
   </symbol>
   <symbol id="i-iglesia" viewBox="0 0 24 24"><path d="M12 2v4M10 4h4M6 21V11l6-5 6 5v10M10 21v-4a2 2 0 0 1 4 0v4M3 21h18"/></symbol>
@@ -471,14 +492,14 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 
 <!-- ============ SOBRE ============ -->
 <div id="sobre" class="terciopelo" role="dialog" aria-label="Abrir invitación">
-  <div class="flores-fondo"><div class="flor-esq tl" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div><div class="flor-esq br" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div></div>
+  <div class="flores-fondo"><div class="flor-esq tl" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div><div class="flor-esq br" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div></div>
   <div class="sobre-wrap">
     <p class="eyebrow">Nuestra boda</p>
     <h1 class="sobre-nombres foil">Itzel &amp; Omar</h1>
     <p class="sobre-fecha">20 · 02 · 2027</p>
     <button class="envelope" id="envelope" aria-label="Abrir la invitación">
       <div class="env-body terciopelo">
-        <div class="env-carta"><p><svg viewBox="-23 -23 46 46" aria-hidden="true"><use href="#flor"/></svg>Nos casamos</p></div>
+        <div class="env-carta"><p><img src="assets/ilustraciones/rosa-suelta.webp" alt="" class="rosita">Nos casamos</p></div>
         <div class="env-p env-izq"></div><div class="env-p env-der"></div><div class="env-p env-abajo"></div>
         <div class="env-solapa"></div>
       </div>
@@ -500,7 +521,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
   <header class="hero" id="inicio">
     <div class="satin" aria-hidden="true"></div>
     <div class="marco" aria-hidden="true"></div>
-    <div class="flor-esq tl" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div><div class="flor-esq br" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div>
+    <div class="flor-esq tl" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div><div class="flor-esq br" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div>
     <div class="hero-inner">
       <p class="eyebrow rv">Con la bendición de Dios y de nuestros padres</p>
       <h2 class="nombres foil rv d1">Itzel<span class="y">y</span>Omar</h2>
@@ -512,7 +533,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 
   <!-- ============ RASPA Y DESCUBRE ============ -->
   <section class="bloque alt terciopelo con-flores" id="fecha">
-    <div class="flor-esq tr suave" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div>
+    <div class="flor-esq tr suave" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div>
     <div class="cont">
       <svg class="rama rv"><use href="#rama"/></svg>
       <p class="eyebrow rv">Raspa y descubre</p>
@@ -560,6 +581,21 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
   </section>
 
   <!-- ============ CANCIÓN ============ -->
+  <section class="bloque" id="historia">
+    <div class="cont">
+      <svg class="rama rv"><use href="#rama"/></svg>
+      <p class="eyebrow rv">Nuestra historia</p>
+      <h2 class="titulo rv">Momentos <em class="foil">juntos</em></h2>
+      <div class="mazo rv d1" id="mazo" aria-roledescription="carrusel" aria-label="Fotos de Itzel y Omar"></div>
+      <div class="mazo-nav rv d1">
+        <button class="flecha" id="mazoPrev" type="button" aria-label="Foto anterior"><svg class="ic"><use href="#i-izq"/></svg></button>
+        <span class="puntos-mazo" id="puntosMazo"></span>
+        <button class="flecha" id="mazoNext" type="button" aria-label="Siguiente foto"><svg class="ic"><use href="#i-der"/></svg></button>
+      </div>
+      <p class="pista rv d2">Toca o desliza las fotos</p>
+    </div>
+  </section>
+
   <section class="bloque alt terciopelo" id="cancion">
     <div class="cont">
       <p class="eyebrow rv">La canción de nuestra historia</p>
@@ -617,7 +653,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 
   <!-- ============ REGALOS ============ -->
   <section class="bloque alt terciopelo con-flores">
-    <div class="flor-esq bl suave" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div>
+    <div class="flor-esq bl suave" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div>
     <div class="cont">
       <p class="eyebrow rv">Mesa de regalos</p>
       <h2 class="titulo rv">Un <em class="foil">detalle</em></h2>
@@ -643,7 +679,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 
   <!-- ============ RSVP ============ -->
   <section class="bloque con-flores" id="rsvp">
-    <div class="flor-esq tl suave" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div><div class="flor-esq br suave" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div>
+    <div class="flor-esq tl suave" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div><div class="flor-esq br suave" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div>
     <div class="cont">
       <svg class="rama rv"><use href="#rama"/></svg>
       <p class="eyebrow rv">R.S.V.P.</p>
@@ -667,7 +703,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 </main>
 
 <footer class="terciopelo con-flores">
-  <div class="flor-esq tr" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div><div class="flor-esq bl" aria-hidden="true"><svg viewBox="0 0 220 220"><use href="#ramo"/></svg></div>
+  <div class="flor-esq tr" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div><div class="flor-esq bl" aria-hidden="true"><img src="assets/ilustraciones/esquina-rosas.webp" alt="" decoding="async"></div>
   <svg class="rama"><use href="#rama"/></svg>
   <p class="mono foil">I &amp; O</p>
   <p class="gracias">Gracias por ser parte de nuestra historia. ¡Te esperamos!</p>
@@ -707,7 +743,16 @@ const CONFIG = {
     civil:     { titulo: 'Ceremonia civil', hora: '4:00 PM', icono: 'i-firma', nombre: '', direccion: '', mapa: '', foto: '' }
   },
   // fotos de fondo por sección (rutas en assets/fotos/). Vacío = fondo verde terciopelo.
-  fondos: { inicio: '', fecha: '', cancion: '', itinerario: '', rsvp: '', final: '' },
+  fondos: { inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg' },
+  // mazo de "Nuestra historia": foto + pie
+  historia: [
+    { foto: 'assets/fotos/cabana.jpg', pie: 'Entre bosques' },
+    { foto: 'assets/fotos/mirador.jpg', pie: 'Mirando el horizonte juntos' },
+    { foto: 'assets/fotos/acuario.jpg', pie: 'Cada momento a tu lado' },
+    { foto: 'assets/fotos/cascada.jpg', pie: 'Todas las aventuras' },
+    { foto: 'assets/fotos/propuesta.jpg', pie: 'La gran pregunta' },
+    { foto: 'assets/fotos/anillo.jpg', pie: '¡Dijo que sí!' }
+  ],
   regalosUrl: '',
   rsvpEmail: 'itzelblancass21@gmail.com',
   pasesDefault: 4,
@@ -759,7 +804,7 @@ function loop() {
 }
 // destello dorado al tocar cualquier parte
 document.addEventListener('pointerdown', e => {
-  if (document.body.classList.contains('cerrado') || e.target.closest('input,textarea,select,.raspa')) return;
+  if (document.body.classList.contains('cerrado') || e.target.closest('input,textarea,select,.raspa,.mazo')) return;
   burst(e.clientX, e.clientY, 9, 3, 'chispa');
 });
 
@@ -909,7 +954,10 @@ Object.entries(CONFIG.fondos || {}).forEach(([id, foto]) => {
   const el = id === 'final' ? $('footer') : document.getElementById(id);
   if (!foto || !el) return;
   el.classList.add('con-foto');
-  el.style.backgroundImage = `linear-gradient(180deg,rgba(15,32,27,.84),rgba(15,32,27,.7) 45%,rgba(15,32,27,.88)),url("${foto}")`;
+  const velo = id === 'inicio'
+    ? 'linear-gradient(180deg,rgba(15,32,27,.35) 0%,rgba(15,32,27,.12) 30%,rgba(15,32,27,.55) 62%,rgba(15,32,27,.95) 88%)'
+    : 'linear-gradient(180deg,rgba(15,32,27,.86),rgba(15,32,27,.72) 45%,rgba(15,32,27,.9))';
+  el.style.backgroundImage = `${velo},url("${foto}")`;
 });
 const cajaLugares = $('#lugares');
 Object.values(CONFIG.lugares).forEach(l => {
@@ -927,6 +975,47 @@ Object.values(CONFIG.lugares).forEach(l => {
     </div>`;
   cajaLugares.appendChild(art);
 });
+
+/* ===== Nuestra historia: mazo de fotos ===== */
+const mazo = $('#mazo'), FOTOS = CONFIG.historia || [];
+let tope = 0, mazoFin = false;
+FOTOS.forEach((f, k) => {
+  const fig = document.createElement('figure'); fig.className = 'polaroid';
+  fig.innerHTML = `<img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy" decoding="async"><figcaption>${esc(f.pie)}</figcaption>`;
+  mazo.appendChild(fig); $('#puntosMazo').appendChild(document.createElement('i'));
+});
+const giros = [-4, 3, -2, 5, -5, 2, -3];
+function acomodar() {
+  const cartas = [...mazo.children], n = cartas.length;
+  cartas.forEach((c, k) => {
+    const pos = (k - tope + n) % n;                    // 0 = arriba
+    c.style.zIndex = n - pos;
+    c.style.transform = `translate(${pos * 4}px,${pos * 6}px) rotate(${pos === 0 ? 0 : giros[k % giros.length]}deg) scale(${1 - pos * .03})`;
+    c.style.opacity = pos > 3 ? 0 : 1;
+    c.setAttribute('aria-hidden', pos !== 0);
+  });
+  $$('#puntosMazo i').forEach((p, k) => p.classList.toggle('on', k === tope));
+}
+function pasar(dir = 1) {
+  if (!FOTOS.length) return;
+  const arriba = mazo.children[tope];
+  if (dir > 0) {
+    arriba.classList.add('vuela'); arriba.style.transform = `translate(${dir * 120}%, -8%) rotate(${dir * 18}deg)`; arriba.style.opacity = 0;
+    setTimeout(() => { arriba.classList.remove('vuela'); tope = (tope + 1) % FOTOS.length; acomodar(); revisarFin(); }, 380);
+  } else { tope = (tope - 1 + FOTOS.length) % FOTOS.length; acomodar(); }
+}
+function revisarFin() {
+  if (tope === FOTOS.length - 1 && !mazoFin) { mazoFin = true; const r = mazo.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 60, 8); }
+}
+let mx0 = null;
+mazo.addEventListener('pointerdown', e => { mx0 = [e.clientX, e.clientY]; });
+mazo.addEventListener('pointerup', e => {
+  if (!mx0) return; const dx = e.clientX - mx0[0], dy = e.clientY - mx0[1]; mx0 = null;
+  if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) pasar(dx < 0 ? 1 : -1); else if (Math.abs(dx) < 8 && Math.abs(dy) < 8) pasar(1);
+});
+$('#mazoNext').addEventListener('click', () => pasar(1));
+$('#mazoPrev').addEventListener('click', () => pasar(-1));
+acomodar();
 
 /* ===== Itinerario: línea de tiempo ===== */
 const MOMENTOS = [
@@ -1007,7 +1096,7 @@ function iniciarDeck() {
   [...foot.children].filter(c => !c.classList.contains('flor-esq')).forEach(c => envol.appendChild(c));
   foot.appendChild(envol); main.appendChild(foot);
   const slides = [...main.children];
-  const NOMBRES = ['Inicio', 'Nuestra fecha', 'Nuestros padres', 'Nuestra canción', 'Dónde y cuándo', 'Itinerario', 'Vestimenta', 'Regalos', 'Confirmar', 'Gracias'];
+  const NOMBRES = ['Inicio', 'Nuestra fecha', 'Nuestros padres', 'Nuestra historia', 'Nuestra canción', 'Dónde y cuándo', 'Itinerario', 'Vestimenta', 'Regalos', 'Confirmar', 'Gracias'];
   slides.forEach(sl => { sl.classList.add('slide'); $('#progreso').appendChild(document.createElement('i')); });
   document.body.classList.add('deck-on');
   const links = $$('.dock a');
@@ -1039,7 +1128,7 @@ function iniciarDeck() {
   });
   // deslizar de lado para cambiar de sección
   let p0 = null;
-  main.addEventListener('pointerdown', e => { p0 = e.target.closest('.raspa,input,textarea,select') ? null : [e.clientX, e.clientY]; });
+  main.addEventListener('pointerdown', e => { p0 = e.target.closest('.raspa,.mazo,input,textarea,select') ? null : [e.clientX, e.clientY]; });
   main.addEventListener('pointerup', e => {
     if (!p0) return; const dx = e.clientX - p0[0], dy = e.clientY - p0[1]; p0 = null;
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) irSlide(k + (dx < 0 ? 1 : -1));
