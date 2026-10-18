@@ -15,11 +15,11 @@ Todo lo editable está al inicio del `<script>` de `index.html`, en el objeto `C
 Textos (padres, itinerario, colores de vestimenta) están en el HTML y en los arreglos `MOMENTOS` y `COLORES`.
 Colores y tipografías: variables CSS en `:root` (`--verde`, `--oro`, etc.).
 
-## Formato y alternativas (ambas scroll)
-- **A · Clásica** → `./` o `/a/`: pocas fotos de fondo (portada, RSVP, cierre) + mini álbum en carrusel.
-- **B · Fotos de fondo** → `?estilo=fotos` o `/c/`: las 9 fotos repartidas de fondo (fijas mientras el contenido pasa encima).
-- `comparar.html` muestra ambas. `/b/` lleva a la A. El modo pestañas ya no se usa.
-- Poema: `CONFIG.poema.versos` (un verso o estrofa por foto, en orden). Vacío = pies normales.
+## Versión oficial
+**A · Clásica** (scroll, pocas fotos de fondo + mini álbum) → `./` o `/a/`. Elegida por Itzel y Omar el 2026-10-17.
+- Alternativa descartada: fotos de fondo (`?estilo=fotos`, `/c/`) — sigue en el código pero no se comparte.
+- `comparar.html` y `/b/` llevan a la oficial. El modo pestañas no se usa.
+- Poema: `CONFIG.poema.versos` (un verso por foto del mini álbum, en orden).
 
 ## Links personalizados por invitado
 `?n=Nombre&p=Pases` → muestra el nombre y los lugares reservados en el sobre y limita el RSVP.
