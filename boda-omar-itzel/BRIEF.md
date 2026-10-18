@@ -17,7 +17,8 @@ Adornos: ramas de laurel doradas. Moodboard en `inspiracion/`.
 - Destellos dorados al tocar cualquier parte
 
 ## Formato elegido
-**Scroll / página continua** (decisión de Itzel y Omar, 2026-10-17). No usar el modo pestañas.
+**Scroll / página continua, versión A · Clásica** (pocas fotos de fondo + mini álbum), decisión de Itzel y Omar, 2026-10-17. Descartados: pestañas y fotos de fondo.
+Últimos ajustes pedidos: primera↔última foto intercambiadas; rosas de los lados en marfil.
 
 ## Datos confirmados
 - 20 feb 2027 · Ceremonia religiosa 2:00 pm · Civil 4:00 pm
