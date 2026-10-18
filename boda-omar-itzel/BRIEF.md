@@ -1,4 +1,4 @@
-# Invitación digital — Boda Omar & Itzel
+# Invitación digital — Boda Itzel & Omar
 **Jay IA Studio** · iniciado 2026-10-16 · archivo principal: `index.html`
 
 ## Concepto: Verde terciopelo + oro

@@ -1,4 +1,4 @@
-# Invitación digital · Omar & Itzel · 20.02.2027
+# Invitación digital · Itzel & Omar · 20.02.2027
 Diseñada por **Jay IA Studio**. Sitio estático (un solo `index.html`), sin dependencias ni servidor.
 
 ## Cómo personalizar
