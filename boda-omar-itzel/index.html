@@ -236,7 +236,7 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 .cara.atras .btn:hover{background:var(--verde-hondo);color:var(--oro-claro)}
 
 /* fotos de fondo por sección */
-.con-foto{background-size:cover!important;background-position:center!important}
+.con-foto{background-size:cover!important;background-position:center 30%!important}
 .hero.con-foto .satin{opacity:.12}
 .hero.con-foto{place-items:end center;padding-bottom:calc(var(--dock) + 64px);background-position:center 20%!important}
 .hero.con-foto .hero-inner{text-shadow:0 2px 18px rgba(0,0,0,.45)}
@@ -245,6 +245,27 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 .hero.con-foto .eyebrow{font-size:.58rem;letter-spacing:.24em}
 .hero.con-foto .rama{margin-bottom:.8rem}
 .hero.con-foto .lead{font-size:1.05rem}
+
+/* ===== Alternativa: fotos de fondo ===== */
+.modo-fotos #historia{display:none}
+.modo-fotos section.fijo{padding-top:0;padding-bottom:0;overflow:clip}
+.modo-fotos .fondo-fijo{position:sticky;top:0;height:100svh;margin:0 -16px -100svh;background-size:cover;background-position:center 30%;z-index:0;pointer-events:none}
+.modo-fotos section.fijo > .cont{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:96px 0}
+@media (min-width:720px){.modo-fotos .fondo-fijo{margin:0 -24px -100svh}}
+.modo-fotos section.con-foto::after{opacity:0}
+.modo-fotos .con-foto .eyebrow,.modo-fotos .con-foto h2,.modo-fotos .con-foto .lead,.modo-fotos .con-foto .verso,.modo-fotos .con-foto .familia p{text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.modo-fotos .con-foto .lead,.modo-fotos .con-foto .familia p{color:var(--marfil)}
+/* tarjetas de vidrio para que todo se lea encima de la foto */
+.modo-fotos .con-foto .reloj div,.modo-fotos .con-foto .tarjeta-lt,.modo-fotos .con-foto .familia,.modo-fotos .con-foto form.rsvp{
+  background:rgba(15,32,27,.42);backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);border:1px solid rgba(200,164,90,.35)}
+.modo-fotos .con-foto .familia{border-radius:16px;padding:20px 16px}
+.modo-fotos .con-foto form.rsvp{border-radius:18px;padding:22px 18px}
+.modo-fotos .con-foto .tarjeta-lt{background:rgba(15,32,27,.5)}
+.modo-fotos .con-foto .paso-lt .icono-lt{background:rgba(15,32,27,.7)}
+.modo-fotos .con-foto .linea-tiempo::before{background:rgba(236,213,154,.5)}
+.modo-fotos .con-foto .tornamesa{filter:drop-shadow(0 20px 30px rgba(0,0,0,.6))}
+.modo-fotos .con-foto .muestra{box-shadow:0 0 0 2px rgba(255,255,255,.5),0 8px 18px -6px rgba(0,0,0,.7)}
+.modo-fotos .con-foto .cancion,.modo-fotos .con-foto .nombre-color{text-shadow:0 2px 12px rgba(0,0,0,.7)}
 
 /* poema: el 8 que se vuelve infinito */
 #poema{padding-block:110px}
@@ -259,6 +280,13 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 .verso::before,.verso::after{font-family:var(--serif);color:var(--oro);font-size:1.3em;line-height:0;vertical-align:-.25em}
 .verso::before{content:"«"}.verso::after{content:"»"}
 .autor{font-family:var(--sans);font-size:.68rem;letter-spacing:.38em;text-transform:uppercase;color:var(--oro);margin-top:1.4rem}
+
+/* versos en los pies de foto */
+.foto-h figcaption.con-verso{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.4;bottom:22px;padding:0 22px}
+.foto-h .autor-pie{display:block;font-family:var(--sans);font-style:normal;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro-claro);margin-top:8px}
+.pie-fondo{position:relative;z-index:1;max-width:30ch;margin:0 auto;padding:0 18px 90px;text-align:center;font-style:italic;font-size:1.15rem;line-height:1.45;
+  color:var(--marfil);text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.pie-fondo::before{content:"";display:block;width:40px;height:1px;background:var(--oro);margin:0 auto 14px}
 
 /* nuestra historia: carrusel fluido */
 .carrusel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
@@ -588,7 +616,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
   </section>
 
   <!-- ============ FAMILIAS ============ -->
-  <section class="bloque">
+  <section class="bloque" id="familias">
     <div class="cont">
       <svg class="rama rv"><use href="#rama"/></svg>
       <p class="eyebrow rv">Con el amor de</p>
@@ -611,16 +639,6 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
       <div class="carrusel rv d1" id="carrusel" aria-label="Fotos de Itzel y Omar"></div>
       <div class="puntos-mazo" id="puntosMazo"></div>
       <p class="pista rv d2">Desliza para ver más</p>
-    </div>
-  </section>
-
-  <section class="bloque alt terciopelo" id="poema">
-    <div class="cont">
-      <svg class="infinito rv" id="infinito" viewBox="0 0 120 120" aria-hidden="true">
-        <g><path d="M60 60C84 36 84 12 60 12S36 36 60 60 84 84 84 96 72 108 60 108 36 96 36 84 48 72 60 60Z"/></g>
-      </svg>
-      <p class="verso rv d1">…darle una patada al 8 y hacerla un infinito</p>
-      <p class="autor rv d2">César Brandon</p>
     </div>
   </section>
 
@@ -668,7 +686,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
   </section>
 
   <!-- ============ DRESS CODE ============ -->
-  <section class="bloque">
+  <section class="bloque" id="vestimenta">
     <div class="cont">
       <svg class="rama rv"><use href="#rama"/></svg>
       <p class="eyebrow rv">Código de vestimenta</p>
@@ -680,7 +698,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
   </section>
 
   <!-- ============ REGALOS ============ -->
-  <section class="bloque alt terciopelo con-flores">
+  <section class="bloque alt terciopelo con-flores" id="regalos">
     
     <div class="cont">
       <p class="eyebrow rv">Mesa de regalos</p>
@@ -772,6 +790,9 @@ const CONFIG = {
   },
   // fotos de fondo por sección (rutas en assets/fotos/). Vacío = fondo verde terciopelo.
   fondos: { inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg' },
+  // poema repartido en los pies de foto: un verso (o estrofa, con \n) por foto, en orden.
+  // Si una foto no tiene verso, usa su pie de 'historia'.
+  poema: { autor: 'César Brandon', versos: [] },
   // carrusel de "Nuestra historia": foto + pie
   historia: [
     { foto: 'assets/fotos/cabana.jpg', pie: 'Entre bosques' },
@@ -793,6 +814,16 @@ const CONFIG = {
 };
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const MODO_PESTANAS = new URLSearchParams(location.search).get('modo') === 'pestanas';
+// Alternativa "fotos de fondo" (?estilo=fotos): todas las fotos repartidas detrás de cada sección
+const MODO_FOTOS = new URLSearchParams(location.search).get('estilo') === 'fotos';
+if (MODO_FOTOS) {
+  document.documentElement.classList.add('modo-fotos');
+  CONFIG.fondos = {
+    inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: 'assets/fotos/cabana.jpg', familias: 'assets/fotos/anillo.jpg',
+    regalos: 'assets/fotos/cascada.jpg', cancion: 'assets/fotos/propuesta.jpg', itinerario: 'assets/fotos/mirador.jpg',
+    vestimenta: 'assets/fotos/acuario.jpg', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg'
+  };
+}
 if (MODO_PESTANAS) document.documentElement.classList.add('modo-pestanas');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -978,14 +1009,22 @@ $('#btnIcs').addEventListener('click', () => {
 /* ===== Tarjetas que se voltean ===== */
 const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
 // fotos de fondo con velo verde para que el texto siempre se lea
+let ordenFotos = 0;
 Object.entries(CONFIG.fondos || {}).forEach(([id, foto]) => {
   const el = id === 'final' ? $('footer') : document.getElementById(id);
   if (!foto || !el) return;
   el.classList.add('con-foto');
   const velo = id === 'inicio'
     ? 'linear-gradient(180deg,rgba(15,32,27,.35) 0%,rgba(15,32,27,.12) 30%,rgba(15,32,27,.55) 62%,rgba(15,32,27,.95) 88%)'
+    : MODO_FOTOS ? 'linear-gradient(180deg,rgba(15,32,27,.78) 0%,rgba(15,32,27,.42) 38%,rgba(15,32,27,.5) 62%,rgba(15,32,27,.85) 100%)'
     : 'linear-gradient(180deg,rgba(15,32,27,.86),rgba(15,32,27,.72) 45%,rgba(15,32,27,.9))';
-  el.style.backgroundImage = `${velo},url("${foto}")`;
+  if (MODO_FOTOS && el.tagName === 'SECTION') {
+    // foto fija mientras el contenido pasa por encima (funciona también en iPhone)
+    const capa = document.createElement('div'); capa.className = 'fondo-fijo'; capa.setAttribute('aria-hidden', 'true');
+    capa.style.backgroundImage = `${velo},url("${foto}")`; el.prepend(capa); el.classList.add('fijo');
+    const v = (CONFIG.poema.versos || [])[ordenFotos++];
+    if (v) { const pie = document.createElement('p'); pie.className = 'pie-fondo rv'; pie.innerHTML = esc(v).replace(/\n/g, '<br>'); el.appendChild(pie); }
+  } else el.style.backgroundImage = `${velo},url("${foto}")`;
 });
 const cajaLugares = $('#lugares');
 Object.values(CONFIG.lugares).forEach(l => {
@@ -1008,7 +1047,9 @@ Object.values(CONFIG.lugares).forEach(l => {
 const car = $('#carrusel'), FOTOS = CONFIG.historia || [];
 FOTOS.forEach((f, k) => {
   const fig = document.createElement('figure'); fig.className = 'foto-h';
-  fig.innerHTML = `<img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy" decoding="async"><figcaption>${esc(f.pie)}</figcaption>`;
+  const verso = (CONFIG.poema.versos || [])[k];
+  const pie = verso ? `<span class="verso-pie">${esc(verso).replace(/\n/g, '<br>')}</span>${k === FOTOS.length - 1 ? `<small class="autor-pie">${esc(CONFIG.poema.autor)}</small>` : ''}` : esc(f.pie);
+  fig.innerHTML = `<img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy" decoding="async"><figcaption class="${verso ? 'con-verso' : ''}">${pie}</figcaption>`;
   car.appendChild(fig);
   const b = document.createElement('button'); b.setAttribute('aria-label', `Foto ${k + 1}`);
   b.addEventListener('click', () => irFoto(k)); $('#puntosMazo').appendChild(b);
@@ -1038,11 +1079,6 @@ new IntersectionObserver(([x]) => carVisible = x.isIntersecting, { threshold: .5
 ['pointerdown', 'touchstart', 'wheel'].forEach(ev => car.addEventListener(ev, () => carToque = Date.now(), { passive: true }));
 setInterval(() => { if (carVisible && !reduce && Date.now() - carToque > 6000 && !document.hidden) irFoto((fotoAct + 1) % FOTOS.length); }, 4200);
 requestAnimationFrame(pintarCar);
-
-/* ===== Poema: el 8 se vuelve infinito ===== */
-new IntersectionObserver(([x], o) => { if (x.isIntersecting) { $('#infinito').classList.add('vivo'); o.disconnect();
-  setTimeout(() => { const r = $('#infinito').getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 26, 5, 'chispa'); }, 2600); } },
-  { threshold: .6 }).observe($('#infinito'));
 
 /* ===== Itinerario: línea de tiempo ===== */
 const MOMENTOS = [
@@ -1123,7 +1159,7 @@ function iniciarDeck() {
   [...foot.children].filter(c => !c.classList.contains('flor-esq')).forEach(c => envol.appendChild(c));
   foot.appendChild(envol); main.appendChild(foot);
   const slides = [...main.children];
-  const NOMBRES = ['Inicio', 'Nuestra fecha', 'Nuestros padres', 'Nuestra historia', 'Infinito', 'Nuestra canción', 'Dónde y cuándo', 'Itinerario', 'Vestimenta', 'Regalos', 'Confirmar', 'Gracias'];
+  const NOMBRES = ['Inicio', 'Nuestra fecha', 'Nuestros padres', 'Nuestra historia', 'Nuestra canción', 'Dónde y cuándo', 'Itinerario', 'Vestimenta', 'Regalos', 'Confirmar', 'Gracias'];
   slides.forEach(sl => { sl.classList.add('slide'); $('#progreso').appendChild(document.createElement('i')); });
   document.body.classList.add('deck-on');
   const links = $$('.dock a');

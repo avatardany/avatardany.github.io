@@ -15,8 +15,11 @@ Todo lo editable está al inicio del `<script>` de `index.html`, en el objeto `C
 Textos (padres, itinerario, colores de vestimenta) están en el HTML y en los arreglos `MOMENTOS` y `COLORES`.
 Colores y tipografías: variables CSS en `:root` (`--verde`, `--oro`, etc.).
 
-## Formato
-La pareja eligió **scroll (página continua)**. El modo pestañas (`?modo=pestanas`) sigue en el código pero no se usa ni se comparte; `/a/`, `/b/` y `comparar.html` llevan a la versión scroll.
+## Formato y alternativas (ambas scroll)
+- **A · Clásica** → `./` o `/a/`: pocas fotos de fondo (portada, RSVP, cierre) + mini álbum en carrusel.
+- **B · Fotos de fondo** → `?estilo=fotos` o `/c/`: las 9 fotos repartidas de fondo (fijas mientras el contenido pasa encima).
+- `comparar.html` muestra ambas. `/b/` lleva a la A. El modo pestañas ya no se usa.
+- Poema: `CONFIG.poema.versos` (un verso o estrofa por foto, en orden). Vacío = pies normales.
 
 ## Links personalizados por invitado
 `?n=Nombre&p=Pases` → muestra el nombre y los lugares reservados en el sobre y limita el RSVP.
