@@ -31,8 +31,6 @@ td button{margin:0;padding:6px 10px;font-size:.6rem}
   <p class="sub">Escribe un invitado por línea: <b>Nombre, pases</b>. Ejemplo: Familia Pérez, 3</p>
   <label for="base">URL de la invitación</label>
   <input id="base">
-  <label for="version">Versión</label>
-  <select id="version"><option value="">A · Deslizar</option><option value="pestanas">B · Pestañas</option></select>
   <label for="lista">Invitados</label>
   <textarea id="lista" placeholder="Familia Pérez, 3&#10;Tía Lupita, 1&#10;Carlos y Ana, 2"></textarea>
   <button id="generar">Generar links</button>
@@ -47,8 +45,7 @@ document.getElementById('generar').addEventListener('click', () => {
   filas = document.getElementById('lista').value.split('\n').map(l => l.trim()).filter(Boolean).map(l => {
     const m = l.match(/^(.*?)[,;\t]\s*(\d+)\s*$/);
     const nombre = (m ? m[1] : l).trim(), pases = m ? +m[2] : 0;
-    const q = new URLSearchParams(); const v = document.getElementById('version').value;
-    if (v) q.set('modo', v); q.set('n', nombre); if (pases) q.set('p', pases);
+    const q = new URLSearchParams(); q.set('n', nombre); if (pases) q.set('p', pases);
     return { nombre, pases, url: base.value.trim() + '?' + q.toString() };
   });
   const tb = document.querySelector('#tabla tbody'); tb.innerHTML = '';

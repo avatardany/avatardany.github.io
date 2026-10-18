@@ -11,9 +11,9 @@
 <script>
   // Link corto: conserva ?n=&p= si vienen; si no, muestra la vista previa para los novios
   var q = location.search ? location.search.slice(1) + '&' : 'n=Itzel%20%26%20Omar&p=2&';
-  location.replace('../?modo=pestanas&' + q.replace(/&$/, ''));
+  location.replace('../?' + q.replace(/&$/, ''));
 </script>
-<noscript><meta http-equiv="refresh" content="0; url=../?modo=pestanas&n=Itzel%20%26%20Omar&amp;p=2"></noscript>
+<noscript><meta http-equiv="refresh" content="0; url=../?n=Itzel%20%26%20Omar&amp;p=2"></noscript>
 </head>
 <body></body>
 </html>
