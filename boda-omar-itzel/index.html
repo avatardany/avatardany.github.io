@@ -789,7 +789,7 @@ const CONFIG = {
     civil:     { titulo: 'Ceremonia civil', hora: '4:00 PM', icono: 'i-firma', nombre: '', direccion: '', mapa: '', foto: '' }
   },
   // fotos de fondo por sección (rutas en assets/fotos/). Vacío = fondo verde terciopelo.
-  fondos: { inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg' },
+  fondos: { inicio: 'assets/fotos/arco-sonrisa.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-beso-mejilla.jpg' },
   // poema repartido en los pies de foto: un verso (o estrofa, con \n) por foto, en orden.
   // Si una foto no tiene verso, usa su pie de 'historia'.
   poema: {
@@ -825,9 +825,9 @@ const MODO_FOTOS = new URLSearchParams(location.search).get('estilo') === 'fotos
 if (MODO_FOTOS) {
   document.documentElement.classList.add('modo-fotos');
   CONFIG.fondos = {
-    inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: 'assets/fotos/cabana.jpg', familias: 'assets/fotos/anillo.jpg',
+    inicio: 'assets/fotos/arco-sonrisa.jpg', fecha: 'assets/fotos/cabana.jpg', familias: 'assets/fotos/anillo.jpg',
     cancion: 'assets/fotos/propuesta.jpg', itinerario: 'assets/fotos/mirador.jpg', vestimenta: 'assets/fotos/acuario.jpg',
-    regalos: 'assets/fotos/cascada.jpg', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg'
+    regalos: 'assets/fotos/cascada.jpg', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-beso-mejilla.jpg'
   };
 }
 if (MODO_PESTANAS) document.documentElement.classList.add('modo-pestanas');
