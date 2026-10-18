@@ -283,7 +283,7 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 
 /* versos en los pies de foto */
 .foto-h figcaption.con-verso{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.4;bottom:22px;padding:0 22px}
-.foto-h .autor-pie{display:block;font-family:var(--sans);font-style:normal;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro-claro);margin-top:8px}
+.foto-h .autor-pie,.pie-fondo .autor-pie{display:block;font-family:var(--sans);font-style:normal;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro-claro);margin-top:8px}
 .pie-fondo{position:relative;z-index:1;max-width:30ch;margin:0 auto;padding:0 18px 90px;text-align:center;font-style:italic;font-size:1.15rem;line-height:1.45;
   color:var(--marfil);text-shadow:0 2px 12px rgba(0,0,0,.7)}
 .pie-fondo::before{content:"";display:block;width:40px;height:1px;background:var(--oro);margin:0 auto 14px}
@@ -792,7 +792,13 @@ const CONFIG = {
   fondos: { inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg' },
   // poema repartido en los pies de foto: un verso (o estrofa, con \n) por foto, en orden.
   // Si una foto no tiene verso, usa su pie de 'historia'.
-  poema: { autor: 'César Brandon', versos: [] },
+  poema: {
+    autor: 'César Brandon · Alma 64, Las almas de Brandon',
+    // alternativa A (mini álbum, 6 fotos)
+    versos: ['Quisiera ser tan osado como la «H» e intercalarme entre tus labios.', 'Quisiera ponerle un lazo al «más allá de» y regalarte una metáfora de cariño.', 'Quisiera contar cada uno de tus lunares, tus pecas y tus tatuajes.', 'Quisiera ofrecerte adjetivos posesivos: «tuyo» es «mi» corazón.', 'Quisiera dormir tu realidad, despertar tus sueños, volar en tu tierra y caminar en tu cielo.', 'Quisiera añadirle el prefijo «in» y el sufijo «ito» al cotidiano «fin». Así, como darle una patada al «8» y hacerlo un «in/fin/ito».'],
+    // alternativa B (fotos de fondo, 7 secciones en orden de lectura)
+    versosFondos: ['Quisiera ser tan osado como la «H» e intercalarme entre tus labios.', 'Quisiera ponerle un lazo al «más allá de» y regalarte una metáfora de cariño.', 'Quisiera contar cada uno de tus lunares, tus pecas y tus tatuajes.', 'Quisiera ofrecerte adjetivos posesivos: «tuyo» es «mi» corazón.', 'Quisiera adornar tu alma: ser el complemento (indirecto) de la «persona» que amas.', 'Quisiera dormir tu realidad, despertar tus sueños, volar en tu tierra y caminar en tu cielo.', 'Quisiera añadirle el prefijo «in» y el sufijo «ito» al cotidiano «fin». Así, como darle una patada al «8» y hacerlo un «in/fin/ito».']
+  },
   // carrusel de "Nuestra historia": foto + pie
   historia: [
     { foto: 'assets/fotos/cabana.jpg', pie: 'Entre bosques' },
@@ -820,8 +826,8 @@ if (MODO_FOTOS) {
   document.documentElement.classList.add('modo-fotos');
   CONFIG.fondos = {
     inicio: 'assets/fotos/arco-beso-mejilla.jpg', fecha: 'assets/fotos/cabana.jpg', familias: 'assets/fotos/anillo.jpg',
-    regalos: 'assets/fotos/cascada.jpg', cancion: 'assets/fotos/propuesta.jpg', itinerario: 'assets/fotos/mirador.jpg',
-    vestimenta: 'assets/fotos/acuario.jpg', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg'
+    cancion: 'assets/fotos/propuesta.jpg', itinerario: 'assets/fotos/mirador.jpg', vestimenta: 'assets/fotos/acuario.jpg',
+    regalos: 'assets/fotos/cascada.jpg', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-sonrisa.jpg'
   };
 }
 if (MODO_PESTANAS) document.documentElement.classList.add('modo-pestanas');
@@ -1022,8 +1028,12 @@ Object.entries(CONFIG.fondos || {}).forEach(([id, foto]) => {
     // foto fija mientras el contenido pasa por encima (funciona también en iPhone)
     const capa = document.createElement('div'); capa.className = 'fondo-fijo'; capa.setAttribute('aria-hidden', 'true');
     capa.style.backgroundImage = `${velo},url("${foto}")`; el.prepend(capa); el.classList.add('fijo');
-    const v = (CONFIG.poema.versos || [])[ordenFotos++];
-    if (v) { const pie = document.createElement('p'); pie.className = 'pie-fondo rv'; pie.innerHTML = esc(v).replace(/\n/g, '<br>'); el.appendChild(pie); }
+    const lista = CONFIG.poema.versosFondos || CONFIG.poema.versos || [], v = lista[ordenFotos++];
+    if (v) {
+      const pie = document.createElement('p'); pie.className = 'pie-fondo rv'; pie.innerHTML = esc(v).replace(/\n/g, '<br>');
+      if (ordenFotos === lista.length) pie.innerHTML += `<small class="autor-pie">${esc(CONFIG.poema.autor)}</small>`;
+      el.appendChild(pie);
+    }
   } else el.style.backgroundImage = `${velo},url("${foto}")`;
 });
 const cajaLugares = $('#lugares');
