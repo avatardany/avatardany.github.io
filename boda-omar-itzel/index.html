@@ -168,6 +168,7 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 .revelado > div{overflow:hidden;opacity:0;transition:opacity .8s .3s}
 .revelado.abierto{grid-template-rows:1fr}
 .revelado.abierto > div{opacity:1}
+.btn-revelar{margin-top:1.3rem;font-size:.66rem}
 .btn-texto{background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marfil-tenue);
   text-decoration:underline;text-underline-offset:4px;margin-top:1.2rem;padding:8px}
 
@@ -586,16 +587,16 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
     
     <div class="cont">
       <svg class="rama rv"><use href="#rama"/></svg>
-      <p class="eyebrow rv">Raspa y descubre</p>
+      <p class="eyebrow rv">Toca y descubre</p>
       <h2 class="titulo rv">Nuestra <em class="foil">fecha</em></h2>
       <div class="raspas rv d1" id="raspas">
         <div class="raspa"><div class="valor"><b>20</b><small>Día</small></div><canvas aria-hidden="true"></canvas></div>
         <div class="raspa"><div class="valor"><b class="txt">Febrero</b><small>Mes</small></div><canvas aria-hidden="true"></canvas></div>
         <div class="raspa"><div class="valor"><b>2027</b><small>Año</small></div><canvas aria-hidden="true"></canvas></div>
       </div>
-      <p class="pista rv d2" id="pistaRaspa">Desliza tu dedo sobre el dorado</p>
+      <p class="pista rv d2" id="pistaRaspa">Toca o raspa cada círculo dorado</p>
       <p class="sr">Sábado 20 de febrero de 2027</p>
-      <div><button class="btn-texto" id="revelarTodo" type="button">Revelar sin raspar</button></div>
+      <div><button class="btn btn-revelar" id="revelarTodo" type="button">Descubrir la fecha</button></div>
 
       <div class="revelado" id="revelado">
         <div>
@@ -781,7 +782,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 const CONFIG = {
   fechaISO: '2027-02-20T14:00:00-06:00',   // ceremonia religiosa (hora centro de México)
   finISO:   '2027-02-21T02:00:00-06:00',
-  // foto: ruta en assets/fotos/ (ej. 'assets/fotos/etalonadas/parroquia.jpg'). Un lugar sin nombre muestra "por confirmar";
+  // foto: ruta en assets/fotos/ (ej. 'assets/fotos/etalonadas2/parroquia.jpg'). Un lugar sin nombre muestra "por confirmar";
   // 'recepcion' solo aparece si se le pone nombre.
   lugares: {
     religiosa: { titulo: 'Ceremonia religiosa', hora: '2:00 PM', icono: 'i-iglesia', nombre: '', direccion: '', mapa: '', foto: '' },
@@ -789,7 +790,7 @@ const CONFIG = {
     civil:     { titulo: 'Ceremonia civil', hora: '4:00 PM', icono: 'i-firma', nombre: '', direccion: '', mapa: '', foto: '' }
   },
   // fotos de fondo por sección (rutas en assets/fotos/). Vacío = fondo verde terciopelo.
-  fondos: { inicio: 'assets/fotos/etalonadas/arco-sonrisa.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/etalonadas/arco-beso.jpg', final: 'assets/fotos/etalonadas/arco-beso-mejilla.jpg' },
+  fondos: { inicio: 'assets/fotos/etalonadas2/arco-sonrisa.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/etalonadas2/arco-beso.jpg', final: 'assets/fotos/etalonadas2/arco-beso-mejilla.jpg' },
   // poema repartido en los pies de foto: un verso (o estrofa, con \n) por foto, en orden.
   // Si una foto no tiene verso, usa su pie de 'historia'.
   poema: {
@@ -801,12 +802,12 @@ const CONFIG = {
   },
   // carrusel de "Nuestra historia": foto + pie
   historia: [
-    { foto: 'assets/fotos/etalonadas/cabana.jpg', pie: 'Entre bosques' },
-    { foto: 'assets/fotos/etalonadas/mirador.jpg', pie: 'Mirando el horizonte juntos' },
-    { foto: 'assets/fotos/etalonadas/acuario.jpg', pie: 'Cada momento a tu lado' },
-    { foto: 'assets/fotos/etalonadas/cascada.jpg', pie: 'Todas las aventuras' },
-    { foto: 'assets/fotos/etalonadas/propuesta.jpg', pie: 'La gran pregunta' },
-    { foto: 'assets/fotos/etalonadas/anillo.jpg', pie: '¡Dijo que sí!' }
+    { foto: 'assets/fotos/etalonadas2/cabana.jpg', pie: 'Entre bosques' },
+    { foto: 'assets/fotos/etalonadas2/mirador.jpg', pie: 'Mirando el horizonte juntos' },
+    { foto: 'assets/fotos/etalonadas2/acuario.jpg', pie: 'Cada momento a tu lado' },
+    { foto: 'assets/fotos/etalonadas2/cascada.jpg', pie: 'Todas las aventuras' },
+    { foto: 'assets/fotos/etalonadas2/propuesta.jpg', pie: 'La gran pregunta' },
+    { foto: 'assets/fotos/etalonadas2/anillo.jpg', pie: '¡Dijo que sí!' }
   ],
   regalosUrl: '',
   rsvpEmail: 'itzelblancass21@gmail.com',
@@ -825,9 +826,9 @@ const MODO_FOTOS = new URLSearchParams(location.search).get('estilo') === 'fotos
 if (MODO_FOTOS) {
   document.documentElement.classList.add('modo-fotos');
   CONFIG.fondos = {
-    inicio: 'assets/fotos/etalonadas/arco-sonrisa.jpg', fecha: 'assets/fotos/etalonadas/cabana.jpg', familias: 'assets/fotos/etalonadas/anillo.jpg',
-    cancion: 'assets/fotos/etalonadas/propuesta.jpg', itinerario: 'assets/fotos/etalonadas/mirador.jpg', vestimenta: 'assets/fotos/etalonadas/acuario.jpg',
-    regalos: 'assets/fotos/etalonadas/cascada.jpg', rsvp: 'assets/fotos/etalonadas/arco-beso.jpg', final: 'assets/fotos/etalonadas/arco-beso-mejilla.jpg'
+    inicio: 'assets/fotos/etalonadas2/arco-sonrisa.jpg', fecha: 'assets/fotos/etalonadas2/cabana.jpg', familias: 'assets/fotos/etalonadas2/anillo.jpg',
+    cancion: 'assets/fotos/etalonadas2/propuesta.jpg', itinerario: 'assets/fotos/etalonadas2/mirador.jpg', vestimenta: 'assets/fotos/etalonadas2/acuario.jpg',
+    regalos: 'assets/fotos/etalonadas2/cascada.jpg', rsvp: 'assets/fotos/etalonadas2/arco-beso.jpg', final: 'assets/fotos/etalonadas2/arco-beso-mejilla.jpg'
   };
 }
 if (MODO_PESTANAS) document.documentElement.classList.add('modo-pestanas');
@@ -944,8 +945,8 @@ function iniciarRaspas() {
     for (let i = 0; i < 260; i++) { c.fillStyle = `rgba(255,248,220,${Math.random() * .35})`; c.fillRect(Math.random() * w, Math.random() * h, 1.2, 1.2); }
     c.strokeStyle = 'rgba(90,64,20,.35)'; c.lineWidth = 1; c.beginPath(); c.arc(w / 2, h / 2, w / 2 - 8, 0, Math.PI * 2); c.stroke();
     c.fillStyle = 'rgba(90,64,20,.6)'; c.font = `500 ${Math.round(w * .095)}px Jost, sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle';
-    c.fillText('R A S P A', w / 2, h / 2);
-    c.globalCompositeOperation = 'destination-out'; c.lineCap = c.lineJoin = 'round'; c.lineWidth = w * .2;
+    c.fillText('T O C A', w / 2, h / 2);
+    c.globalCompositeOperation = 'destination-out'; c.lineCap = c.lineJoin = 'round'; c.lineWidth = w * .34;
     let ant = null, cuenta = 0, listo = false;
     const pos = e => { const r = cv.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
     const terminar = () => {
@@ -959,7 +960,7 @@ function iniciarRaspas() {
       c.beginPath();
       for (const [x, y] of pend) { c.moveTo(...(ant || [x - .1, y])); c.lineTo(x, y); ant = [x, y]; }
       c.stroke(); pend = [];
-      if (++cuenta % 4 === 0 && porcentaje(c, cv) > .5) terminar();
+      if (++cuenta % 3 === 0 && porcentaje(c, cv) > .25) terminar();
     };
     const raspar = e => {
       if (listo) return;
@@ -969,9 +970,12 @@ function iniciarRaspas() {
       if (!raf) raf = requestAnimationFrame(dibujar);
     };
     el._terminar = terminar;
-    cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); ant = null; raspar(e); });
+    let t0 = null;
+    cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); ant = null; t0 = [e.clientX, e.clientY]; raspar(e); });
     cv.addEventListener('pointermove', e => { if (e.buttons || e.pointerType === 'touch') raspar(e); });
-    cv.addEventListener('pointerup', () => { ant = null; if (!listo && porcentaje(c, cv) > .5) terminar(); });
+    cv.addEventListener('pointerup', e => { ant = null; if (listo) return;
+      const toque = t0 && Math.hypot(e.clientX - t0[0], e.clientY - t0[1]) < 12;
+      if (toque || porcentaje(c, cv) > .25) terminar(); });
   });
 }
 function porcentaje(c, cv) {
