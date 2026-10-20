@@ -15,7 +15,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.pexels.com">
-<link rel="preconnect" href="https://images.unsplash.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
@@ -102,6 +101,25 @@ header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);bac
 .hero-card .ic svg{width:22px;height:22px}
 .hero-card b{display:block;color:var(--navy)}
 .hero-card small{color:var(--gris);font-size:.86rem}
+.hero-card .promo-ic{background:#e8a316;color:var(--navy);font-weight:800;font-size:.95rem;letter-spacing:-.02em}
+/* Promoción */
+.promo{background:var(--azul);color:#fff}
+.promo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px 28px;padding:22px 0;flex-wrap:wrap}
+.promo .txt{display:flex;align-items:center;gap:18px}
+.promo .pct{font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.03em}
+.promo b{display:block;font-size:1.12rem}
+.promo span.det{color:#d3e7f6;font-size:.95rem}
+.promo .btn{background:#fff;color:var(--navy)}
+.promo .btn:hover{background:#eaf3fa}
+/* Trabajos */
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px}
+.galeria figure{margin:0;border-radius:12px;overflow:hidden;position:relative;background:var(--fondo)}
+.galeria img{width:100%;height:100%;object-fit:cover}
+.galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(11,31,51,.85));color:#fff;font-weight:700;font-size:.92rem}
+.galeria .alto{grid-row:span 2}
+.galeria .ancho{grid-column:span 2}
+@media(max-width:900px){.galeria{grid-template-columns:1fr 1fr;grid-auto-rows:180px}}
+@media(max-width:520px){.galeria{grid-template-columns:1fr;grid-auto-rows:220px}.galeria .alto{grid-row:span 1}.galeria .ancho{grid-column:span 1}}
 @media(max-width:960px){
   .hero .wrap{grid-template-columns:1fr;min-height:0}
   .hero-txt{padding:48px 0 40px}
@@ -259,6 +277,7 @@ footer .creditos a{color:#b8c7d6}
     <nav aria-label="Principal">
       <a href="#servicios">Servicios</a>
       <a href="#porque">Por qué ZUNBER</a>
+      <a href="#trabajos">Trabajos</a>
       <a href="#proceso">Cómo trabajamos</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -284,14 +303,21 @@ footer .creditos a{color:#b8c7d6}
       </div>
     </div>
     <div class="hero-foto">
-      <img src="https://images.pexels.com/photos/38190070/pexels-photo-38190070.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Técnico revisando un electrodoméstico" fetchpriority="high">
+      <img src="fotos/lavado-tambor.jpg" alt="Técnico de ZUNBER lavando el tambor de una lavadora con hidrolavadora" fetchpriority="high">
       <div class="hero-card">
-        <span class="ic"><svg><use href="#i-casa"/></svg></span>
-        <span><b>Vamos a tu domicilio</b><small>Revisión y reparación en el lugar</small></span>
+        <span class="ic promo-ic">10%</span>
+        <span><b>10% de descuento</b><small>En el presupuesto de tu primera reparación</small></span>
       </div>
     </div>
   </div>
 </section>
+
+<div class="promo">
+  <div class="wrap">
+    <div class="txt"><span class="pct">10%</span><div><b>Descuento en tu primera reparación</b><span class="det">Te descontamos el 10% del presupuesto la primera vez que nos contratas.</span></div></div>
+    <a class="btn" href="https://wa.me/525549930925?text=Hola%20ZUNBER%2C%20quiero%20aprovechar%20el%2010%25%20de%20descuento%20en%20mi%20primera%20reparaci%C3%B3n" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Aprovechar descuento</a>
+  </div>
+</div>
 
 <div class="marcas">
   <div class="wrap">
@@ -308,7 +334,7 @@ footer .creditos a{color:#b8c7d6}
     </div>
     <div class="servicios">
       <article class="svc">
-        <img src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?auto=format&fit=crop&w=700&q=75" alt="Refrigerador de acero inoxidable en una cocina" loading="lazy">
+        <img src="fotos/refri-manometros.jpg" alt="Reparación del sistema de refrigeración de un refrigerador con manómetros" loading="lazy">
         <div class="svc-body">
           <h3>Refrigeradores</h3>
           <p>Una y dos puertas, dúplex y con despachador.</p>
@@ -320,7 +346,7 @@ footer .creditos a{color:#b8c7d6}
         </div>
       </article>
       <article class="svc">
-        <img src="https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?auto=format&fit=crop&w=700&q=75" alt="Lavadoras de carga frontal" loading="lazy">
+        <img src="fotos/lavadora-lg.jpg" alt="Lavadora LG abierta durante una reparación" loading="lazy">
         <div class="svc-body">
           <h3>Lavadoras y lavasecadoras</h3>
           <p>Carga superior y frontal.</p>
@@ -332,7 +358,7 @@ footer .creditos a{color:#b8c7d6}
         </div>
       </article>
       <article class="svc">
-        <img src="https://images.unsplash.com/photo-1610305401607-8745a10c75dd?auto=format&fit=crop&w=700&q=75" alt="Centros de lavado y secadoras" loading="lazy">
+        <img src="fotos/lavadora-desarmada.jpg" alt="Lavadora de carga frontal desarmada para su reparación" loading="lazy">
         <div class="svc-body">
           <h3>Secadoras y centros de lavado</h3>
           <p>Eléctricas y de gas, torres de lavado y secado.</p>
@@ -362,7 +388,7 @@ footer .creditos a{color:#b8c7d6}
 <section class="sec porque" id="porque">
   <div class="wrap">
     <div class="porque-foto">
-      <img src="https://images.pexels.com/photos/6471912/pexels-photo-6471912.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Técnico revisando la presión de refrigerante con manómetros" loading="lazy">
+      <img src="fotos/refri-tarjeta.jpg" alt="Diagnóstico de un refrigerador con tarjeta electrónica, multímetro y manómetros" loading="lazy">
     </div>
     <div>
       <h2>Un servicio técnico serio, cerca de tu casa</h2>
@@ -372,6 +398,22 @@ footer .creditos a{color:#b8c7d6}
         <div class="punto"><span class="ic"><svg><use href="#i-rayo"/></svg></span><div><h3>Atención el mismo día</h3><p>Agendamos tu visita lo antes posible para que no te quedes días sin tu equipo.</p></div></div>
         <div class="punto"><span class="ic"><svg><use href="#i-escudo"/></svg></span><div><h3>Trabajo con garantía</h3><p>Respaldamos cada reparación. Si la falla regresa, regresamos nosotros.</p></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="trabajos">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Trabajos recientes</h2>
+      <p>Fotos reales de reparaciones y mantenimientos que hemos hecho a domicilio.</p>
+    </div>
+    <div class="galeria">
+      <figure class="ancho"><img src="fotos/lavado-tambor.jpg" alt="Lavado del tambor de una lavadora con hidrolavadora" loading="lazy"><figcaption>Limpieza profunda de tambor</figcaption></figure>
+      <figure class="alto"><img src="fotos/refri-tarjeta.jpg" alt="Diagnóstico electrónico de un refrigerador" loading="lazy"><figcaption>Diagnóstico de refrigerador</figcaption></figure>
+      <figure class="alto"><img src="fotos/tambor-patio.jpg" alt="Tambor y tina de lavadora durante mantenimiento" loading="lazy"><figcaption>Mantenimiento de lavadora</figcaption></figure>
+      <figure><img src="fotos/refri-manometros.jpg" alt="Carga de gas y revisión de presiones en refrigerador" loading="lazy"><figcaption>Sistema de refrigeración</figcaption></figure>
+      <figure><img src="fotos/lavadora-lg.jpg" alt="Reparación de lavadora LG" loading="lazy"><figcaption>Reparación de lavadora LG</figcaption></figure>
     </div>
   </div>
 </section>
@@ -432,7 +474,7 @@ footer .creditos a{color:#b8c7d6}
 </section>
 
 <section class="banda">
-  <img src="https://images.pexels.com/photos/34734504/pexels-photo-34734504.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" loading="lazy">
+  <img src="fotos/refri-manometros.jpg" alt="" loading="lazy">
   <div class="wrap">
     <div>
       <h2>¿Tu refrigerador o tu lavadora dejó de funcionar?</h2>
@@ -453,7 +495,7 @@ footer .creditos a{color:#b8c7d6}
       <p style="margin-top:14px">© <span id="anio">2026</span> ZUNBER. Tultitlán, Estado de México.</p>
       <a class="fb" href="https://www.facebook.com/profile.php?id=61578473964209" target="_blank" rel="noopener"><svg><use href="#i-fb"/></svg>Síguenos en Facebook</a>
     </div>
-    <p class="creditos">Fotografías de <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> y <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>, de uso libre.</p>
+    <p class="creditos">Fotografías de trabajos realizados por ZUNBER. Foto de refrigeración comercial: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a>.</p>
   </div>
 </footer>
 
