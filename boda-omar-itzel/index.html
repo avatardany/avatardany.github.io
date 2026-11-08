@@ -121,10 +121,18 @@ h2.titulo em{font-family:var(--script);font-style:normal;font-size:1.3em;padding
 .envelope.abierto .env-carta{transform:translateY(-62%);box-shadow:inset 0 0 0 6px var(--marfil),inset 0 0 0 7px var(--oro),0 -10px 30px rgba(6,18,14,.25)}
 .toca{font-family:var(--sans);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marfil-suave);animation:respira 2.6s ease-in-out infinite}
 @keyframes respira{0%,100%{opacity:.45}50%{opacity:1}}
-.pases{border-top:1px solid var(--linea);padding-top:18px;width:100%}
-.pases .invitado{font-family:var(--script);font-size:clamp(1.8rem,8vw,2.3rem);line-height:1.2}
-.pases .num{display:inline-grid;place-items:center;width:48px;height:48px;border:1px solid var(--oro);font-size:1.6rem;margin:8px 0 4px;color:var(--oro-claro)}
-.pases small{display:block;font-family:var(--sans);letter-spacing:.32em;font-size:.6rem;text-transform:uppercase;color:var(--marfil-suave)}
+.pases{position:relative;width:100%;padding:18px 16px 20px;border:1px solid rgba(200,164,90,.45);border-radius:18px;
+  background:linear-gradient(180deg,rgba(200,164,90,.10),rgba(200,164,90,.03));display:grid;justify-items:center;gap:4px}
+.para-quien{width:100%;padding:0 0 14px;margin-bottom:2px;border-bottom:1px solid var(--linea);display:grid;gap:2px}
+.para-eyebrow{font-family:var(--sans);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marfil-suave)}
+.para-nombre{font-family:var(--script);font-weight:400;font-size:clamp(2.2rem,10vw,3rem);line-height:1.2;padding:0 .1em}
+.pases .invitado{font-family:var(--script);font-size:clamp(2rem,9vw,2.6rem);line-height:1.2}
+.pases .num{display:grid;place-items:center;width:84px;height:84px;border-radius:50%;margin:6px 0 2px;font-size:2.8rem;font-weight:400;line-height:1;
+  background:var(--foil);background-size:200% 100%;color:var(--verde-hondo);box-shadow:0 10px 24px -10px rgba(6,18,14,.8),0 0 0 6px rgba(200,164,90,.14)}
+.pases small{display:block;font-family:var(--sans);letter-spacing:.2em;font-size:.82rem;font-weight:500;text-transform:uppercase;color:var(--marfil)}
+.pases-rsvp{display:inline-flex;align-items:center;gap:12px;margin:1.2rem auto 0;padding:10px 18px 10px 10px;border:1px solid rgba(200,164,90,.45);border-radius:999px;
+  font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marfil)}
+.pases-rsvp b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--foil);background-size:200%;color:var(--verde-hondo);font-size:1.3rem;font-family:var(--serif);letter-spacing:0}
 
 /* ================= HERO ================= */
 .hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:80px 16px;overflow:hidden;isolation:isolate;background:var(--verde)}
@@ -546,6 +554,10 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
 <div id="sobre" class="terciopelo" role="dialog" aria-label="Abrir invitación">
   <div class="flores-fondo"><div class="flor-esq tl" aria-hidden="true"><img src="assets/ilustraciones/esquina-a.webp" alt="" decoding="async"></div><div class="flor-esq br" aria-hidden="true"><img src="assets/ilustraciones/esquina-b.webp" alt="" decoding="async"></div></div>
   <div class="sobre-wrap">
+    <div class="para-quien" id="paraQuien" hidden>
+      <p class="para-eyebrow">Invitación especial para</p>
+      <p class="para-nombre foil" id="paraNombre"></p>
+    </div>
     <p class="eyebrow">Nuestra boda</p>
     <h1 class="sobre-nombres foil">Itzel &amp; Omar</h1>
     <p class="sobre-fecha">20 · 02 · 2027</p>
@@ -559,7 +571,6 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
     </button>
     <p class="toca">Toca el sello para abrir</p>
     <div class="pases" id="pases" hidden>
-      <p class="invitado foil" id="invitadoNombre"></p>
       <span class="num" id="pasesNum">2</span>
       <small id="pasesTexto">Lugares reservados en su honor</small>
     </div>
@@ -734,6 +745,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
       <p class="eyebrow rv">R.S.V.P.</p>
       <h2 class="titulo rv">Confirma tu <em class="foil">asistencia</em></h2>
       <p class="lead rv d1">Nos encantaría contar contigo. Por favor confírmanos tu asistencia.</p>
+      <div class="rv d1" id="pasesRsvp" hidden><span class="pases-rsvp"><b id="pasesRsvpNum"></b><span id="pasesRsvpTxt"></span></span></div>
       <form class="rsvp rv d2" id="formRsvp" novalidate>
         <div class="campo"><label for="fNombre">Nombre</label><input id="fNombre" name="nombre" autocomplete="name" required placeholder="Tu nombre completo"></div>
         <div class="campo"><label>¿Nos acompañas?</label>
@@ -813,6 +825,9 @@ const CONFIG = {
   ],
   regalosUrl: 'https://www.amazon.com.mx/wedding/guest-view/2HNNMQYY5Q2IP',
   rsvpEmail: 'itzelblancass21@gmail.com',
+  // Confirmaciones a Google Sheets: pegar aquí la URL del Apps Script publicado (ver confirmaciones-apps-script.gs).
+  // Vacío = la confirmación se envía por correo, como respaldo.
+  rsvpEndpoint: '',
   pasesDefault: 4,
   musica: {
     completa: 'assets/musica/como-tu.m4a',   // versión completa (comprada en iTunes); si falta, se usa el preview de 30 s
@@ -881,11 +896,12 @@ const qs = new URLSearchParams(location.search);
 const invitado = (qs.get('n') || '').trim().slice(0, 80);
 const pases = Math.min(Math.max(parseInt(qs.get('p'), 10) || 0, 0), 20);
 if (invitado || pases) {
-  $('#pases').hidden = false;
-  $('#invitadoNombre').textContent = invitado || 'Querido invitado';
+  $('#pases').hidden = !pases;
+  if (invitado) { $('#paraQuien').hidden = false; $('#paraNombre').textContent = invitado; }
   if (pases) { $('#pasesNum').textContent = pases; $('#pasesTexto').textContent = pases === 1 ? 'Lugar reservado en tu honor' : 'Lugares reservados en su honor'; }
   else $('#pasesNum').remove();
 }
+if (pases) { $('#pasesRsvp').hidden = false; $('#pasesRsvpNum').textContent = pases; $('#pasesRsvpTxt').textContent = pases === 1 ? 'lugar reservado para ti' : 'lugares reservados para ustedes'; }
 const maxPersonas = pases || CONFIG.pasesDefault, sel = $('#fPersonas');
 for (let i = 1; i <= maxPersonas; i++) sel.add(new Option(i === 1 ? '1 persona' : i + ' personas', i));
 sel.value = maxPersonas;
@@ -1163,6 +1179,18 @@ form.addEventListener('submit', e => {
   const si = form.asiste.value === 'si';
   const cuerpo = ['Hola Itzel y Omar,', '', si ? 'Confirmo mi asistencia a su boda el 20 de febrero de 2027.' : 'Lamentablemente no podré asistir a su boda.',
     '', 'Nombre: ' + nombre, si ? 'Personas: ' + form.personas.value : '', form.mensaje.value.trim() ? '\nMensaje: ' + form.mensaje.value.trim() : ''].filter(x => x !== '').join('\n');
+  if (CONFIG.rsvpEndpoint) {
+    // se guarda directo en la hoja de cálculo de los novios
+    const datos = new URLSearchParams({ invitado: invitado || '', nombre, asiste: si ? 'Sí' : 'No', personas: si ? form.personas.value : '0',
+      pases: pases || '', mensaje: form.mensaje.value.trim() });
+    const boton = form.querySelector('button[type=submit]'); boton.disabled = true; boton.textContent = 'Enviando…';
+    fetch(CONFIG.rsvpEndpoint, { method: 'POST', mode: 'no-cors', body: datos }).then(() => {
+      if (si) lluvia();
+      boton.textContent = si ? '¡Confirmado!' : 'Respuesta enviada';
+      $('#avisoRsvp').textContent = si ? '¡Gracias! Tu asistencia quedó registrada. Nos vemos el 20 de febrero.' : 'Gracias por avisarnos. ¡Te vamos a extrañar!';
+    }).catch(() => { boton.disabled = false; boton.textContent = 'Enviar confirmación'; $('#avisoRsvp').textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.'; });
+    return;
+  }
   if (si) lluvia();
   setTimeout(() => location.href = 'mailto:' + CONFIG.rsvpEmail + '?subject=' + encodeURIComponent(`RSVP Boda Itzel & Omar — ${nombre}`) + '&body=' + encodeURIComponent(cuerpo), si ? 700 : 0);
   $('#avisoRsvp').textContent = '¡Gracias! Solo presiona “Enviar” en tu correo para completar la confirmación.';
