@@ -801,7 +801,7 @@ const CONFIG = {
   lugares: {
     religiosa: { titulo: 'Ceremonia religiosa', hora: '2:00 PM', icono: 'i-iglesia', nombre: 'Parroquia de Nuestra Señora de la Asunción', direccion: 'Santa María Mazatla, Estado de México', mapa: 'https://maps.app.goo.gl/prGhn9wCvDuMgdVV9', foto: 'assets/fotos/iglesia.jpg' },
     recepcion: { titulo: 'Recepción', hora: '3:30 PM', icono: 'i-copa', nombre: '', direccion: '', mapa: '', foto: '', opcional: true },
-    civil:     { titulo: 'Recepción y ceremonia civil', hora: '3:30 PM', icono: 'i-copa', nombre: 'Jardín de Eventos Los Pinos', direccion: 'Recepción 3:30 PM · Ceremonia civil 4:00 PM', mapa: 'https://maps.app.goo.gl/VsMnGka2Kg5Fb6pP9', foto: 'assets/fotos/los-pinos.jpg' }
+    civil:     { titulo: 'Recepción y ceremonia civil', hora: '3:30 PM', icono: 'i-copa', nombre: 'Jardín de Eventos Los Pinos', direccion: '', mapa: 'https://maps.app.goo.gl/VsMnGka2Kg5Fb6pP9', foto: 'assets/fotos/los-pinos.jpg' }
   },
   // fotos de fondo por sección (rutas en assets/fotos/). Vacío = fondo verde terciopelo.
   fondos: { inicio: 'assets/fotos/arco-sonrisa.jpg', fecha: '', cancion: '', itinerario: '', rsvp: 'assets/fotos/arco-beso.jpg', final: 'assets/fotos/arco-beso-mejilla.jpg' },
@@ -1068,7 +1068,7 @@ Object.values(CONFIG.lugares).forEach(l => {
       <h3 class="titulo-lugar foil">${esc(l.titulo)}</h3>
       <p class="hora-lugar">${esc(l.hora)}</p>
       <p class="nombre-lugar">${l.nombre ? esc(l.nombre) : 'Ubicación por confirmar'}</p>
-      <p class="dir-lugar">${l.nombre ? esc(l.direccion) : 'Muy pronto la compartiremos contigo'}</p>
+      ${l.nombre ? (l.direccion ? `<p class="dir-lugar">${esc(l.direccion)}</p>` : '') : '<p class="dir-lugar">Muy pronto la compartiremos contigo</p>'}
       ${l.mapa ? `<a class="btn" href="${esc(l.mapa)}" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg>Ver ubicación</a>`
                : `<span class="btn" aria-disabled="true"><svg class="ic"><use href="#i-pin"/></svg>Próximamente</span>`}
     </div>`;
