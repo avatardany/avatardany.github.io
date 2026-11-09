@@ -305,6 +305,7 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
   box-shadow:0 24px 44px -20px rgba(6,18,14,.8),0 0 0 1px rgba(200,164,90,.35);transform:scale(var(--k,1));opacity:var(--o,1);transition:box-shadow .4s}
 .foto-h img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.08);transition:transform 6s ease-out}
 .foto-h.activa img{transform:scale(1)}
+.foto-h.sola::after{background:linear-gradient(180deg,rgba(15,32,27,.05),transparent 30%)}
 .foto-h::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,32,27,.05) 0%,transparent 40%,rgba(15,32,27,.9) 100%);pointer-events:none}
 .foto-h::before{content:"";position:absolute;inset:8px;border:1px solid rgba(235,217,180,.45);border-radius:12px;z-index:1;pointer-events:none}
 .foto-h figcaption{position:absolute;left:0;right:0;bottom:18px;z-index:2;text-align:center;font-family:var(--script);font-size:1.75rem;line-height:1.2;
@@ -357,9 +358,9 @@ section.bloque > .cont{max-width:560px;margin:0 auto;position:relative;z-index:1
 .paso-lt.final h3{font-family:var(--script);font-size:2.1rem;padding:0 .08em}
 
 /* dress code */
-.paleta{display:flex;justify-content:center;gap:12px;margin:1.8rem 0 .9rem;flex-wrap:wrap}
-.muestra{width:48px;height:48px;border-radius:50%;border:0;cursor:pointer;box-shadow:0 0 0 1px rgba(244,236,220,.4),0 8px 18px -8px rgba(6,18,14,.6);transition:transform .4s var(--ease),box-shadow .4s}
-.muestra.sel{transform:translateY(-8px) scale(1.1);box-shadow:0 0 0 2px var(--verde-hondo),0 0 0 3px var(--oro),0 14px 22px -8px rgba(6,18,14,.7)}
+.paleta{display:grid;grid-template-columns:repeat(5,34px);justify-content:center;gap:12px 14px;margin:1.8rem 0 .9rem}
+.muestra{width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;box-shadow:0 0 0 1px rgba(244,236,220,.4),0 8px 18px -8px rgba(6,18,14,.6);transition:transform .4s var(--ease),box-shadow .4s}
+.muestra.sel{transform:translateY(-5px) scale(1.15);box-shadow:0 0 0 2px var(--verde-hondo),0 0 0 3px var(--oro),0 14px 22px -8px rgba(6,18,14,.7)}
 .nota-blanco{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro);max-width:34ch;margin:1.1rem auto 0;line-height:1.7}
 .nombre-color{font-family:var(--script);font-size:2rem;height:2.6rem;line-height:1.3;color:var(--oro-claro)}
 
@@ -707,7 +708,7 @@ html.modo-pestanas body.deck-on .deck-ui{display:block}
       <div class="paleta rv d1" id="paleta" role="radiogroup" aria-label="Paleta sugerida"></div>
       <p class="nombre-color rv d1" id="nombreColor" aria-live="polite"></p>
       <p class="lead rv d2">Te sugerimos estos tonos para acompañarnos en armonía. Toca cada color para conocerlo.</p>
-      <p class="nota-blanco rv d2">Con cariño te pedimos evitar el blanco, marfil y crema: son exclusivos de la novia.</p>
+      <p class="nota-blanco rv d2">Recuerden que ese día el color blanco es exclusivo de la novia para hacerla brillar</p>
     </div>
   </section>
 
@@ -810,7 +811,7 @@ const CONFIG = {
   poema: {
     autor: 'César Brandon · Alma 64, Las almas de Brandon',
     // alternativa A (mini álbum, 6 fotos)
-    versos: ['Quisiera ser tan osado como la «H» e intercalarme entre tus labios.', 'Quisiera ponerle un lazo al «más allá de» y regalarte una metáfora de cariño.', 'Quisiera contar cada uno de tus lunares, tus pecas y tus tatuajes.', 'Quisiera ofrecerte adjetivos posesivos: «tuyo» es «mi» corazón.', 'Quisiera dormir tu realidad, despertar tus sueños, volar en tu tierra y caminar en tu cielo.', 'Quisiera añadirle el prefijo «in» y el sufijo «ito» al cotidiano «fin». Así, como darle una patada al «8» y hacerlo un «in/fin/ito».'],
+    versos: ['Quisiera ser tan osado como la «H» e intercalarme entre tus labios.', '', 'Quisiera contar cada uno de tus lunares, tus pecas y tus tatuajes.', '', 'Quisiera añadirle el prefijo «in» y el sufijo «ito» al cotidiano «fin». Así, como darle una patada al «8» y hacerlo un «in/fin/ito».'],
     // alternativa B (fotos de fondo, 7 secciones en orden de lectura)
     versosFondos: ['Quisiera ser tan osado como la «H» e intercalarme entre tus labios.', 'Quisiera ponerle un lazo al «más allá de» y regalarte una metáfora de cariño.', 'Quisiera contar cada uno de tus lunares, tus pecas y tus tatuajes.', 'Quisiera ofrecerte adjetivos posesivos: «tuyo» es «mi» corazón.', 'Quisiera adornar tu alma: ser el complemento (indirecto) de la «persona» que amas.', 'Quisiera dormir tu realidad, despertar tus sueños, volar en tu tierra y caminar en tu cielo.', 'Quisiera añadirle el prefijo «in» y el sufijo «ito» al cotidiano «fin». Así, como darle una patada al «8» y hacerlo un «in/fin/ito».']
   },
@@ -820,8 +821,7 @@ const CONFIG = {
     { foto: 'assets/fotos/mirador.jpg', pie: 'Mirando el horizonte juntos' },
     { foto: 'assets/fotos/acuario.jpg', pie: 'Cada momento a tu lado' },
     { foto: 'assets/fotos/cascada.jpg', pie: 'Todas las aventuras' },
-    { foto: 'assets/fotos/propuesta-hd.jpg', pie: 'La gran pregunta' },
-    { foto: 'assets/fotos/anillo.jpg', pie: '¡Dijo que sí!' }
+    { foto: 'assets/fotos/propuesta-hd.jpg', pie: 'La gran pregunta' }
   ],
   regalosUrl: 'https://www.amazon.com.mx/wedding/guest-view/2HNNMQYY5Q2IP',
   rsvpEmail: 'itzelblancass21@gmail.com',
@@ -1079,9 +1079,11 @@ Object.values(CONFIG.lugares).forEach(l => {
 const car = $('#carrusel'), FOTOS = CONFIG.historia || [];
 FOTOS.forEach((f, k) => {
   const fig = document.createElement('figure'); fig.className = 'foto-h';
-  const verso = (CONFIG.poema.versos || [])[k];
-  const pie = verso ? `<span class="verso-pie">${esc(verso).replace(/\n/g, '<br>')}</span>${k === FOTOS.length - 1 ? `<small class="autor-pie">${esc(CONFIG.poema.autor)}</small>` : ''}` : esc(f.pie);
-  fig.innerHTML = `<img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy" decoding="async"><figcaption class="${verso ? 'con-verso' : ''}">${pie}</figcaption>`;
+  const lista = CONFIG.poema.versos || [], verso = lista[k];
+  const ultimo = lista.reduce((u, v, i) => v ? i : u, -1);
+  if (lista.length && !verso) fig.classList.add('sola');
+  const pie = verso ? `<span class="verso-pie">${esc(verso).replace(/\n/g, '<br>')}</span>${k === ultimo ? `<small class="autor-pie">${esc(CONFIG.poema.autor)}</small>` : ''}` : (lista.length ? '' : esc(f.pie));
+  fig.innerHTML = `<img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy" decoding="async">${pie ? `<figcaption class="${verso ? 'con-verso' : ''}">${pie}</figcaption>` : ''}`;
   car.appendChild(fig);
   const b = document.createElement('button'); b.setAttribute('aria-label', `Foto ${k + 1}`);
   b.addEventListener('click', () => irFoto(k)); $('#puntosMazo').appendChild(b);
@@ -1151,7 +1153,8 @@ addEventListener('scroll', pedirLt, { passive: true }); addEventListener('resize
 document.addEventListener('scroll', pedirLt, { passive: true, capture: true });
 
 /* ===== Dress code ===== */
-const COLORES = [['Beige', '#cbb99c'], ['Taupe', '#9c8b78'], ['Gris piedra', '#8e8c86'], ['Azul marino', '#1f2b47'], ['Negro', '#121212']];
+const COLORES = [['Beige', '#cbb99c'], ['Taupe', '#9c8b78'], ['Gris piedra', '#8e8c86'], ['Azul marino', '#1f2b47'], ['Negro', '#121212'],
+  ['Café oscuro', '#3a2c1f'], ['Chocolate', '#6d4a2c'], ['Terracota', '#a05a2c'], ['Caramelo', '#c47a4a'], ['Camel claro', '#ebc49a']];
 COLORES.forEach(([n, c], k) => {
   const b = document.createElement('button'); b.className = 'muestra'; b.style.background = c; b.setAttribute('role', 'radio'); b.setAttribute('aria-label', n);
   b.addEventListener('click', () => elegir(k)); $('#paleta').appendChild(b);
