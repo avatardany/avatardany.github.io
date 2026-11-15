@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f201b">
+<title>Invitados · Itzel & Omar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#183029;--hondo:#0f201b;--panel:#152a24;--oro:#c8a45a;--oro-claro:#e3c77f;--marfil:#f1ead9;--suave:rgba(241,234,217,.66);--tenue:rgba(241,234,217,.42);
+  --linea:rgba(200,164,90,.28);--foil:linear-gradient(100deg,#9d7c3c,#e3c77f 30%,#f6e6b4 45%,#c8a45a 60%,#9d7c3c);--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--hondo);color:var(--marfil);font-family:'Jost',system-ui,sans-serif;font-weight:300;min-height:100svh;
+  background-image:radial-gradient(80% 50% at 50% 0%,rgba(36,68,58,.9),transparent 70%)}
+main{width:min(100% - 32px,760px);margin:0 auto;padding:36px 0 80px}
+.foil{background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+header{text-align:center;margin-bottom:26px}
+.sello{width:58px;height:58px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;
+  background:radial-gradient(circle at 34% 28%,#fff1c4 0%,#e3c77f 28%,#c8a45a 55%,#8f6f33 100%);
+  box-shadow:0 8px 16px rgba(0,0,0,.45),inset 0 -3px 6px rgba(90,64,20,.5);
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#5d4519}
+h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:2.4rem;line-height:1.1}
+header p{color:var(--suave);font-size:.92rem;margin-top:8px;line-height:1.6}
+.resumen{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 8px}
+.dato{border:1px solid var(--linea);border-radius:14px;padding:12px 8px;text-align:center;background:rgba(21,42,36,.6)}
+.dato b{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.9rem;line-height:1}
+.dato small{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tenue)}
+.pasos{border:1px solid var(--linea);border-radius:14px;padding:14px 16px;margin:16px 0 6px;font-size:.88rem;color:var(--suave);line-height:1.6}
+.pasos b{color:var(--oro-claro);font-weight:400}
+.tabs{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 0;margin-top:16px;
+  background:linear-gradient(var(--hondo) 80%,transparent)}
+.tab{border:1px solid var(--linea);background:transparent;color:var(--suave);border-radius:999px;padding:11px 10px;font:inherit;font-size:.78rem;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.tab[aria-selected="true"]{background:var(--oro);color:var(--hondo);border-color:var(--oro);font-weight:500}
+.lado-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:12px 2px 12px;flex-wrap:wrap}
+.lado-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.6rem}
+.lado-head span{font-size:.78rem;color:var(--tenue)}
+.barra{height:4px;border-radius:4px;background:rgba(241,234,217,.1);overflow:hidden;margin:-4px 2px 14px}
+.barra i{display:block;height:100%;width:0;background:var(--foil);transition:width .5s}
+ol{list-style:none;display:grid;gap:10px}
+li{border:1px solid var(--linea);border-radius:16px;background:var(--panel);padding:14px 14px 12px;transition:opacity .3s,border-color .3s}
+li.enviada{opacity:.62;border-color:rgba(37,211,102,.35)}
+.fila{display:flex;align-items:center;gap:12px}
+.n{flex:none;width:28px;font-size:.72rem;color:var(--tenue);text-align:right}
+.nombre{flex:1;min-width:0}
+.nombre b{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.28rem;line-height:1.2}
+.nombre small{font-size:.74rem;color:var(--suave)}
+.pz{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--foil);color:var(--hondo);
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500}
+.acciones{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:6px;margin-top:12px;padding-left:40px}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--linea);border-radius:10px;background:transparent;color:var(--marfil);
+  font:inherit;font-size:.74rem;letter-spacing:.06em;padding:9px 6px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn svg{width:15px;height:15px;flex:none}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#06331a;font-weight:500}
+.btn:active{transform:scale(.97)}
+.marca{display:flex;align-items:center;gap:8px;margin-top:10px;padding-left:40px;font-size:.74rem;color:var(--tenue);cursor:pointer;user-select:none}
+.marca input{accent-color:var(--wa);width:16px;height:16px}
+.extra{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.extra .btn{flex:1;min-width:150px;padding:11px}
+details{margin-top:26px;border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
+summary{cursor:pointer;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--oro-claro)}
+details p{margin-top:10px;font-size:.86rem;color:var(--suave);line-height:1.6;white-space:pre-line}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:var(--marfil);color:var(--hondo);padding:10px 18px;
+  border-radius:999px;font-size:.82rem;transition:.3s;pointer-events:none;z-index:9}
+.toast.ver{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;margin-top:40px;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tenue)}
+@media (max-width:420px){.acciones{padding-left:0}.marca{padding-left:0}.n{width:22px}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="sello">I&amp;O</div>
+    <h1 class="foil">Lista de invitados</h1>
+    <p>Cada familia tiene su propia invitación con su nombre y sus lugares.<br>Tóquenle a <b style="color:#25d366;font-weight:500">Enviar</b> y elijan el contacto en WhatsApp.</p>
+  </header>
+
+  <div class="resumen">
+    <div class="dato"><b class="foil" id="tInv">0</b><small>Invitaciones</small></div>
+    <div class="dato"><b class="foil" id="tPases">0</b><small>Lugares</small></div>
+    <div class="dato"><b class="foil" id="tEnv">0</b><small>Enviadas</small></div>
+  </div>
+
+  <div class="pasos">
+    <b>Cómo enviarlas:</b> en cada familia toquen <b>Enviar</b>. Se abre WhatsApp con el mensaje y el link ya escritos, solo eligen el contacto.
+    Al regresar, la casilla <b>Ya la envié</b> se marca sola para que sepan cuáles faltan. Las confirmaciones les llegan a su hoja de Google con el nombre de cada familia.
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-lado="novio">Novio · <span id="cNovio"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-lado="novia">Novia · <span id="cNovia"></span></button>
+  </div>
+
+  <section id="lista"></section>
+
+  <div class="extra">
+    <button class="btn" id="copiarTodo" type="button">Copiar lista con links</button>
+    <button class="btn" id="csv" type="button">Descargar Excel (CSV)</button>
+  </div>
+
+  <details>
+    <summary>Mensaje que se envía</summary>
+    <p id="muestra"></p>
+  </details>
+
+  <footer>Jay IA Studio · 20 · 02 · 2027</footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+const BASE = 'https://avatardany.github.io/boda-omar-itzel/';
+
+// Listas tal como las enviaron Omar e Itzel, en el mismo orden.
+const INVITADOS = {
+  novio: [
+    ['Familia Rojas González', 2], ['Familia Rojas Tovar', 3], ['Familia Rojas Gutiérrez', 4], ['Juana Rojas', 1],
+    ['Esther Rojas', 3], ['Familia Rojas Barrera', 3], ['Familia Escalona Herrera', 5], ['Familia Reyes', 2],
+    ['Familia González', 3], ['Familia Antonio González', 5], ['Familia González Torres', 2], ['Miguel González', 2],
+    ['Familia González Hernández', 3], ['Araceli Hernández', 3], ['Daniel Caballero', 3]
+  ],
+  novia: [
+    ['Familia Blancas Robirosa', 6], ['Familia Blancas Murillo', 3], ['Familia Neri Rosas', 2], ['Conchita Rojas', 4],
+    ['Familia Rojas Navarro', 4], ['Familia Rojas Martínez', 4], ['Familia González Rojas', 4], ['Familia Blancas', 4],
+    ['Michelle Osornio', 2], ['Raquel Vega', 2], ['Raquel Jiménez', 2], ['Familia Patiño Marín', 5],
+    ['Familia Anaya Villafranco', 8], ['Familia Rojas Vargas', 2], ['Familia Mata Rojas', 5], ['Rafaela y Luis', 2],
+    ['Manuel Olivares', 4], ['Familia Deciga Blancas', 1], ['Familia Núñez Valdez', 4], ['Familia Valdez Martínez', 3],
+    ['Familia Blancas Zúñiga', 5], ['Familia Blancas Mayen', 3], ['Familia Robirosa Escobar', 8], ['Familia Robirosa Fernández', 4],
+    ['Familia Espinoza Blancas', 4], ['Familia Roa', 4], ['Familia Blancas Ruiz', 2], ['Héctor Vélez', 2]
+  ]
+};
+
+const link = (n, p) => BASE + '?' + new URLSearchParams({ n, p }).toString();
+function mensaje(n, p) {
+  const uno = p === 1;
+  return `¡Hola, ${n}! 💚\n\nCon muchísima ilusión queremos compartir${uno ? 'te' : 'les'} nuestra invitación de boda. ` +
+    (uno ? 'Tienes *1 lugar* reservado en tu honor.' : `Tienen *${p} lugares* reservados en su honor.`) +
+    `\n\n${uno ? 'Ábrela aquí y confírmanos tu' : 'Ábranla aquí y confírmennos su'} asistencia:\n${link(n, p)}\n\n` +
+    `Con cariño,\n*Itzel & Omar* ✨\n20 · 02 · 2027`;
+}
+
+const KEY = 'io-enviadas-v1';
+let enviadas = {};
+try { enviadas = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+const guardar = () => { try { localStorage.setItem(KEY, JSON.stringify(enviadas)); } catch (e) {} };
+
+const $ = s => document.querySelector(s);
+const ICO = {
+  wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.8 1 .9 1.8 1.1 2.1 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>',
+  copia: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+  ver: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>'
+};
+
+let lado = 'novio';
+try { lado = localStorage.getItem('io-lado') || 'novio'; } catch (e) {}
+
+function toast(t) { const el = $('#toast'); el.textContent = t; el.classList.add('ver'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('ver'), 1600); }
+function copiar(t) {
+  return (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).catch(() => {
+    const a = Object.assign(document.createElement('textarea'), { value: t }); document.body.appendChild(a); a.select(); document.execCommand('copy'); a.remove();
+  });
+}
+
+function totales() {
+  const todos = [...INVITADOS.novio, ...INVITADOS.novia];
+  $('#tInv').textContent = todos.length;
+  $('#tPases').textContent = todos.reduce((s, [, p]) => s + p, 0);
+  $('#tEnv').textContent = todos.filter(([n]) => enviadas[n]).length;
+  for (const l of ['novio', 'novia']) $('#c' + l[0].toUpperCase() + l.slice(1)).textContent = INVITADOS[l].length;
+}
+
+function pintar() {
+  document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b.dataset.lado === lado));
+  const lista = INVITADOS[lado], lugares = lista.reduce((s, [, p]) => s + p, 0), env = lista.filter(([n]) => enviadas[n]).length;
+  $('#lista').innerHTML = `
+    <div class="lado-head"><h2 class="foil">Invitados de ${lado === 'novio' ? 'Omar' : 'Itzel'}</h2>
+      <span>${lista.length} invitaciones · ${lugares} lugares · ${env} enviadas</span></div>
+    <div class="barra"><i style="width:${lista.length ? env / lista.length * 100 : 0}%"></i></div>
+    <ol>${lista.map(([n, p], i) => `
+      <li class="${enviadas[n] ? 'enviada' : ''}" data-i="${i}">
+        <div class="fila"><span class="n">${i + 1}</span>
+          <div class="nombre"><b>${n}</b><small>${p === 1 ? '1 lugar' : p + ' lugares'}</small></div>
+          <span class="pz" aria-label="${p} lugares">${p}</span></div>
+        <div class="acciones">
+          <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(mensaje(n, p))}" target="_blank" rel="noopener" data-accion="wa">${ICO.wa}Enviar</a>
+          <button class="btn" type="button" data-accion="copiar">${ICO.copia}Copiar</button>
+          <a class="btn" href="${link(n, p)}" target="_blank" rel="noopener">${ICO.ver}Ver</a>
+        </div>
+        <label class="marca"><input type="checkbox" data-accion="marca" ${enviadas[n] ? 'checked' : ''}> Ya la envié</label>
+      </li>`).join('')}</ol>`;
+  totales();
+}
+
+$('#lista').addEventListener('click', e => {
+  const el = e.target.closest('[data-accion]'); if (!el) return;
+  const li = el.closest('li'), [n, p] = INVITADOS[lado][+li.dataset.i];
+  if (el.dataset.accion === 'copiar') copiar(mensaje(n, p)).then(() => toast('Mensaje copiado · ' + n));
+  if (el.dataset.accion === 'wa') { enviadas[n] = true; guardar(); setTimeout(pintar, 400); }
+});
+$('#lista').addEventListener('change', e => {
+  if (e.target.dataset.accion !== 'marca') return;
+  const [n] = INVITADOS[lado][+e.target.closest('li').dataset.i];
+  if (e.target.checked) enviadas[n] = true; else delete enviadas[n];
+  guardar(); pintar();
+});
+document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+  lado = b.dataset.lado; try { localStorage.setItem('io-lado', lado); } catch (e) {} pintar();
+}));
+
+$('#copiarTodo').addEventListener('click', () => {
+  const lista = INVITADOS[lado];
+  const txt = `Invitados de ${lado === 'novio' ? 'Omar' : 'Itzel'}\n\n` + lista.map(([n, p], i) => `${i + 1}. ${n} (${p})\n${link(n, p)}`).join('\n\n');
+  copiar(txt).then(() => toast('Lista copiada'));
+});
+$('#csv').addEventListener('click', () => {
+  const filas = [];
+  for (const l of ['novio', 'novia']) INVITADOS[l].forEach(([n, p], i) => filas.push([l === 'novio' ? 'Novio' : 'Novia', i + 1, n, p, link(n, p)]));
+  const csv = 'Lado,No.,Invitado,Lugares,Link\n' + filas.map(f => f.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob(['﻿' + csv], { type: 'text/csv' })), download: 'invitados-itzel-omar.csv' });
+  a.click();
+});
+
+$('#muestra').textContent = mensaje('Familia Rojas Tovar', 3).replace(/\*/g, '');
+pintar();
+</script>
+</body>
+</html>
