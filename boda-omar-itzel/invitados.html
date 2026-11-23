@@ -49,6 +49,7 @@ li.enviada{opacity:.62;border-color:rgba(37,211,102,.35)}
 .nombre{flex:1;min-width:0}
 .nombre b{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.28rem;line-height:1.2}
 .nombre small{font-size:.74rem;color:var(--suave)}
+.nuevo{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:999px;background:rgba(227,199,127,.16);border:1px solid rgba(227,199,127,.5);color:var(--oro-claro);font-style:normal;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;vertical-align:1px}
 .pz{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--foil);color:var(--hondo);
   font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500}
 .acciones{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:6px;margin-top:12px;padding-left:40px}
@@ -124,12 +125,12 @@ const INVITADOS = {
   ],
   novia: [
     ['Familia Blancas Robirosa', 6], ['Familia Blancas Murillo', 3], ['Familia Neri Rosas', 2], ['Conchita Rojas', 4],
-    ['Familia Rojas Navarro', 4], ['Familia Rojas Martínez', 4], ['Familia González Rojas', 4], ['Familia Blancas', 4],
+    ['Familia Rojas Navarro', 5], ['Familia Rojas Martínez', 4], ['Familia González Rojas', 4], ['Familia Blancas', 4],
     ['Michelle Osornio', 2], ['Raquel Vega', 2], ['Raquel Jiménez', 2], ['Familia Patiño Marín', 5],
     ['Familia Anaya Villafranco', 8], ['Familia Rojas Vargas', 2], ['Familia Mata Rojas', 5], ['Rafaela y Luis', 2],
     ['Manuel Olivares', 4], ['Familia Deciga Blancas', 1], ['Familia Núñez Valdez', 4], ['Familia Valdez Martínez', 3],
-    ['Familia Blancas Zúñiga', 5], ['Familia Blancas Mayen', 3], ['Familia Robirosa Escobar', 8], ['Familia Robirosa Fernández', 4],
-    ['Familia Espinoza Blancas', 4], ['Familia Roa', 4], ['Familia Blancas Ruiz', 2], ['Héctor Vélez', 2]
+    ['Familia Blancas Zúñiga', 4], ['Familia Blancas Mayen', 3], ['Familia Robirosa Escobar', 8], ['Familia Robirosa Fernández', 4],
+    ['Familia Espinoza Blancas', 4], ['Familia Roa', 4], ['Familia Blancas Ruiz', 2], ['Héctor Vélez', 2], ['Familia Chable Pecna', 2]
   ]
 };
 
@@ -146,6 +147,9 @@ const KEY = 'io-enviadas-v1';
 let enviadas = {};
 try { enviadas = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
 const guardar = () => { try { localStorage.setItem(KEY, JSON.stringify(enviadas)); } catch (e) {} };
+// Cambios del 23 nov: estas invitaciones cambiaron de lugares o son nuevas; hay que (re)enviarlas.
+const NUEVAS = { 'Familia Rojas Navarro': 'Ahora 5 lugares · reenviar', 'Familia Blancas Zúñiga': 'Ahora 4 lugares · reenviar', 'Familia Chable Pecna': 'Nueva' };
+if (!enviadas.__v2) { Object.keys(NUEVAS).forEach(n => delete enviadas[n]); enviadas.__v2 = 1; guardar(); }
 
 const $ = s => document.querySelector(s);
 const ICO = {
@@ -182,7 +186,7 @@ function pintar() {
     <ol>${lista.map(([n, p], i) => `
       <li class="${enviadas[n] ? 'enviada' : ''}" data-i="${i}">
         <div class="fila"><span class="n">${i + 1}</span>
-          <div class="nombre"><b>${n}</b><small>${p === 1 ? '1 lugar' : p + ' lugares'}</small></div>
+          <div class="nombre"><b>${n}</b><small>${p === 1 ? '1 lugar' : p + ' lugares'}</small>${NUEVAS[n] && !enviadas[n] ? `<em class="nuevo">${NUEVAS[n]}</em>` : ''}</div>
           <span class="pz" aria-label="${p} lugares">${p}</span></div>
         <div class="acciones">
           <a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(mensaje(n, p))}" target="_blank" rel="noopener" data-accion="wa">${ICO.wa}Enviar</a>
